@@ -1,4 +1,6 @@
-import Image from "next/image"
+import Image from "next/image";
+import Link from 'next/link';
+
 export default function register() {
 
     return (
@@ -13,10 +15,10 @@ export default function register() {
                     />
                 </div>
                 <div className="relative group" style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }} >
-                    <span style={{marginRight:'2px'}}>I'm located in </span>
+                    <span style={{ marginRight: '2px' }}>I'm located in </span>
                     <button
                         className="flex items-center bg-primary px-6 py-2 text-white rounded hover:bg-primary-accent focus:outline-none"
-                        style={{ background: 'rgba(4, 4, 4, 0.132)', color: 'black', display: 'inline-block'}}
+                        style={{ background: 'rgba(4, 4, 4, 0.132)', color: 'black', display: 'inline-block' }}
                     >
                         Choose Country
                     </button>
@@ -59,13 +61,14 @@ export default function register() {
                     </p>
                 </div>
                 <div className='options mb-5'>
-                    <button style={{
-                        width: '100%',
-                        padding: '20px', borderRadius: '10px',
-                        background: 'rgba(4, 4, 4, 0.132)', border: 'none',
-                        color: '#0a0a0a', fontWeight: '500'
-                    }}><span><i className="fas fa-envelope" style={{ fontSize: 'large', marginRight: '4px' }}></i></span> Sign up with email</button>
-
+                    <Link href="/auth/signup">
+                        <button style={{
+                            width: '100%',
+                            padding: '20px', borderRadius: '10px',
+                            background: 'rgba(4, 4, 4, 0.132)', border: 'none',
+                            color: '#0a0a0a', fontWeight: '500'
+                        }}><span><i className="fas fa-envelope" style={{ fontSize: 'large', marginRight: '4px' }}></i></span> Sign up with email</button>
+                    </Link>
                     <button style={{
                         width: '100%', margin: '8px 0 8px 0',
                         padding: '20px', borderRadius: '10px',
@@ -87,7 +90,12 @@ export default function register() {
                         <div style={{ height: '1px', width: '48%', background: 'gray' }}></div>
                     </div>
                     <div>
-                        <p className='mt-5' style={{ fontWeight: 'bold' }}>Already have Aqar account? <span><a style={{ cursor: 'pointer', color: 'purple' }}>Log in</a></span></p>
+                        <p className='mt-5' style={{ fontWeight: 'bold' }}>Already have Aqar account? <span>
+                            <Link href="/auth/signin">
+                                <button style={{ cursor: 'pointer', color: 'purple' }}>Log in</button>
+                            </Link>
+                        </span>
+                        </p>
                     </div>
                 </div>
             </div>
