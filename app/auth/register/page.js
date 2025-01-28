@@ -62,25 +62,16 @@ export default function register() {
                 </div>
                 <div className='options mb-5'>
                     <Link href="/auth/signup">
-                        <button style={{
-                            width: '100%',
-                            padding: '20px', borderRadius: '10px',
-                            background: 'rgba(4, 4, 4, 0.132)', border: 'none',
-                            color: '#0a0a0a', fontWeight: '500'
+                        <button className='w-full bg-gray-300 hover:bg-gray-400 text-black font-bold py-5 px-5 rounded focus:outline-none focus:ring-2 focus:ring-gray-300' style={{
+
                         }}><span><i className="fas fa-envelope" style={{ fontSize: 'large', marginRight: '4px' }}></i></span> Sign up with email</button>
                     </Link>
-                    <button style={{
-                        width: '100%', margin: '8px 0 8px 0',
-                        padding: '20px', borderRadius: '10px',
-                        background: 'rgba(4, 4, 4, 0.132)', border: 'none',
-                        color: '#0a0a0a', fontWeight: '500'
+                    <button className='w-full bg-gray-300 hover:bg-gray-400 text-black font-bold my-3 py-5 px-5 rounded focus:outline-none focus:ring-2 focus:ring-gray-300' style={{
+
                     }}><span><i style={{ fontSize: 'large', marginRight: '4px' }} className="fab fa-google"></i></span> Sign up with email</button>
 
-                    <button style={{
-                        width: '100%',
-                        padding: '20px', borderRadius: '10px',
-                        background: 'rgba(4, 4, 4, 0.132)', border: 'none',
-                        color: '#0a0a0a', fontWeight: '500'
+                    <button className='w-full bg-gray-300 hover:bg-gray-400 text-black font-bold py-5 px-5 rounded focus:outline-none focus:ring-2 focus:ring-gray-300' style={{
+
                     }}><span><i style={{ fontSize: 'larger', marginRight: '4px', color: 'blue' }} className="fab fa-facebook"></i></span> Sign up with facebook</button>
                 </div>
                 <div style={{ textAlign: 'center' }}>

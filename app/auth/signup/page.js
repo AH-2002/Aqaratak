@@ -19,17 +19,12 @@ export default function signup() {
                 <p style={{ color: 'gray', margin: '8px 0 17px 0', fontSize: '10px' }}>Welcome! Please fill the details to get started.</p>
 
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <button style={{
-                        borderRadius: '10px', marginRight: '5px',
-                        background: 'transparent', border: '1px solid gray',
-                        color: '#0a0a0a', fontWeight: '500', width: '30%', height: '40px'
-                    }}><span><i style={{ fontSize: 'large', marginRight: '4px' }} className="fab fa-google"></i></span> Sign up with email</button>
+                    <button className='w-1/4 bg-transparent text-black hover:bg-gray-800 hover:text-white font-bold py-2 px-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-300'>
+                        <span><i style={{ fontSize: 'large', marginRight: '4px' }} className="fab fa-google"></i></span> Sign up with email</button>
 
-                    <button style={{
-                        borderRadius: '10px', marginLeft: '5px',
-                        background: 'transparent', border: '1px solid gray',
-                        color: '#0a0a0a', fontWeight: '500', width: '30%', height: '40px'
-                    }}><span><i style={{ fontSize: 'larger', marginRight: '4px', color: 'blue' }} className="fab fa-facebook"></i></span> Sign up with facebook</button>
+                    <button className='w-1/4 bg-transparent text-black hover:bg-gray-800 hover:text-white font-bold py-2 px-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-300' style={{
+
+                    }}><span><i style={{ fontSize: 'larger', marginRight: '4px' }} className="fab fa-facebook text-blue-600 group-hover:text-white transition"></i></span> Sign up with facebook</button>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '20px 0 10px 0' }}>
                     <div style={{ height: '1px', width: '25%', background: 'gray' }}></div>
@@ -42,33 +37,38 @@ export default function signup() {
                 className="rounded-lg bg-white p-6 shadow-4 dark:bg-surface-dark"
                 style={{ background: 'transparent', width: '65%', margin: 'auto' }}>
                 <form className='signup-form'>
-                    <div className="relative mb-6" data-twe-input-wrapper-init style={{ width: '49.5%', display: 'inline-block', marginRight: '3px' }}>
-                        <input
-                            type="text"
-                            className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                            id="exampleInput123"
-                            aria-describedby="emailHelp123"
-                        />
-                        <label
-                            for="emailHelp123"
-                            className="absolute left-3 bottom-12 mb-0 text-neutral-500"
-                        >First name
-                        </label>
+                    <div className="flex justify-between mb-6">
+                        <div className="relative w-[48%]">
+                            <input
+                                type="text"
+                                className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                id="exampleInput123"
+                                aria-describedby="emailHelp123"
+                            />
+                            <label
+                                htmlFor="exampleInput123"
+                                className="absolute left-3 bottom-12 mb-0 text-neutral-500"
+                            >
+                                First name
+                            </label>
+                        </div>
+
+                        <div className="relative w-[48%]">
+                            <input
+                                type="text"
+                                className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                id="exampleInput124"
+                                aria-describedby="emailHelp124"
+                            />
+                            <label
+                                htmlFor="exampleInput124"
+                                className="absolute left-3 bottom-12 mb-0 text-neutral-500"
+                            >
+                                Last name
+                            </label>
+                        </div>
                     </div>
 
-                    <div className="relative mb-6" data-twe-input-wrapper-init style={{ width: '49.5%', display: 'inline-block', marginLeft: '3px' }}>
-                        <input
-                            type="text"
-                            className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                            id="exampleInput124"
-                            aria-describedby="emailHelp124"
-                        />
-                        <label
-                            for="exampleInput124"
-                            className="absolute left-3 bottom-12 mb-0 text-neutral-500"
-                        >Last name
-                        </label>
-                    </div>
 
                     <div className="relative mb-6" data-twe-input-wrapper-init>
                         <input
@@ -127,6 +127,6 @@ export default function signup() {
                     </Link>
                 </form>
             </div>
-        </section>
+        </section >
     )
 }

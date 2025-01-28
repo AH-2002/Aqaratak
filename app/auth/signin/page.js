@@ -17,30 +17,25 @@ export default function signin() {
                 <p style={{ color: 'gray', margin: '8px 0 17px 0', fontSize: '10px' }}>Welcome! Please fill the details to get started.</p>
 
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <button style={{
-                        borderRadius: '10px', marginRight: '5px',
-                        background: 'transparent', border: '1px solid gray',
-                        color: '#0a0a0a', fontWeight: '500', width: '30%', height: '40px'
-                    }}><span><i style={{ fontSize: 'large', marginRight: '4px' }} className="fab fa-google"></i></span> Sign up with email</button>
+                    <button className='w-1/4 bg-transparent text-black hover:bg-gray-800 hover:text-white font-bold py-2 px-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-300'>
+                        <span><i style={{ fontSize: 'large', marginRight: '4px' }} className="fab fa-google"></i></span> Sign in with email</button>
 
-                    <button style={{
-                        borderRadius: '10px', marginLeft: '5px',
-                        background: 'transparent', border: '1px solid gray',
-                        color: '#0a0a0a', fontWeight: '500', width: '30%', height: '40px'
-                    }}><span><i style={{ fontSize: 'larger', marginRight: '4px', color: 'blue' }} className="fab fa-facebook"></i></span> Sign up with facebook</button>
+                    <button className='w-1/4 bg-transparent text-black hover:bg-gray-800 hover:text-white font-bold py-2 px-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-300' style={{
+
+                    }}><span><i style={{ fontSize: 'larger', marginRight: '4px' }} className="fab fa-facebook text-blue-600 group-hover:text-white transition"></i></span> Sign in with facebook</button>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '20px 0 10px 0' }}>
                     <div style={{ height: '1px', width: '25%', background: 'gray' }}></div>
                     <span style={{ margin: '0 10px', width: '4%', textAlign: 'center', color: 'gray' }}>or</span>
                     <div style={{ height: '1px', width: '25%', background: 'gray' }}></div>
                 </div>
-            </div>
+            </div >
 
             <div
                 className="rounded-lg bg-white p-6 shadow-4 dark:bg-surface-dark"
                 style={{ background: 'transparent', width: '65%', margin: 'auto' }}>
                 <form className='signup-form'>
-                   
+
                     <div className="relative mb-6" data-twe-input-wrapper-init>
                         <input
                             type="email"
@@ -80,6 +75,6 @@ export default function signin() {
                     </button>
                 </form>
             </div>
-        </section>
+        </section >
     )
 }
