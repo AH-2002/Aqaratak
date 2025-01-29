@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from 'next/link';
+import Brands from "./Brands";
 export default function home() {
     return (
-        <section className='max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 bg-white'>
-            <nav className="bg-transparent">
+        <section className='max-w-8xl mx-auto px-4 sm:px-6 lg:px-8'>
+            <nav className="bg-transparent px-2">
                 <div className="">
                     <div className="flex justify-between h-16">
                         <div className="flex justify-between">
@@ -39,7 +40,7 @@ export default function home() {
                     </div>
                 </div>
             </nav>
-            <main style={{ padding: '20px 0', width: '100%', height: '100vh', position: 'relative' }}>
+            <main style={{ padding: '20px 0', width: '100%', height: '100vh', position: 'relative',background:'transparent' }}>
                 <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
                     <Image
                         src='/background3.jpg'
@@ -60,7 +61,7 @@ export default function home() {
                             </label>
                             <input
                                 type="email"
-                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
                                 id="first-input"
                                 placeholder='What are you look for?'
                                 style={{ border: '1px solid gray', borderRadius: '10px' }}
@@ -72,7 +73,7 @@ export default function home() {
                             </label>
                             <input
                                 type="email"
-                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
                                 id="first-input"
                                 placeholder='What are you look for?'
                                 style={{ border: '1px solid gray', borderRadius: '10px' }}
@@ -84,7 +85,7 @@ export default function home() {
                             </label>
                             <input
                                 type="email"
-                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
                                 id="first-input"
                                 placeholder='What are you look for?'
                                 style={{ border: '1px solid gray', borderRadius: '10px' }}
@@ -96,7 +97,7 @@ export default function home() {
                             </label>
                             <input
                                 type="email"
-                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
                                 id="first-input"
                                 placeholder='What are you look for?'
                                 style={{ border: '1px solid gray', borderRadius: '10px' }}
@@ -108,7 +109,7 @@ export default function home() {
                             </label>
                             <input
                                 type="email"
-                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
                                 id="first-input"
                                 placeholder='What are you look for?'
                                 style={{ border: '1px solid gray', borderRadius: '10px' }}
@@ -117,7 +118,7 @@ export default function home() {
                         <div style={{ marginTop: '25px' }}>
                             <input
                                 type="search"
-                                className="text-center bg-purple-500 peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                className="text-center bg-purple-500 peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
                                 id="first-input"
                                 placeholder='search'
                                 style={{ border: 'none', borderRadius: '10px' }}
@@ -127,6 +128,7 @@ export default function home() {
                 </div>
 
             </main>
+            <Brands />
         </section>
     )
 }

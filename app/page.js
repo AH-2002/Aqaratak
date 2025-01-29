@@ -4,7 +4,7 @@ export default function site() {
   let auth = true;
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <Link href="/site">
+      <Link href="/site/home">
         <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 mr-3">
           Auth
         </button>
