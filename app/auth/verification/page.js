@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function verification() {
     return (
-        <section style={{ width: '95%', margin: 'auto', height: '100vh' }}>
+        <section style={{ width: '95%', margin: 'auto', padding: '10px 0', height: '100vh' }}>
             <nav style={{ height: '10%' }}>
                 <Image
                     src='/logo.png'
@@ -19,12 +19,12 @@ export default function verification() {
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <input type="number" style={{ height: '55px', width: '55px', border: 'gray solid 1px', borderRadius: '10px', marginRight: '30px', textAlign: 'center', fontSize: 'large' }} />
-                    <input type="number" style={{ height: '55px', width: '55px', border: 'gray solid 1px', borderRadius: '10px', marginRight: '30px', textAlign: 'center', fontSize: 'large' }} />
-                    <input type="number" style={{ height: '55px', width: '55px', border: 'gray solid 1px', borderRadius: '10px', marginRight: '30px', textAlign: 'center', fontSize: 'large' }} />
-                    <input type="number" style={{ height: '55px', width: '55px', border: 'gray solid 1px', borderRadius: '10px', marginRight: '30px', textAlign: 'center', fontSize: 'large' }} />
-                    <input type="number" style={{ height: '55px', width: '55px', border: 'gray solid 1px', borderRadius: '10px', marginRight: '30px', textAlign: 'center', fontSize: 'large' }} />
-                    <input type="number" style={{ height: '55px', width: '55px', border: 'gray solid 1px', borderRadius: '10px', textAlign: 'center', fontSize: 'large' }} />
+                    <input type="number" className="no-spinner" style={{ height: '55px', width: '55px', border: 'gray solid 1px', borderRadius: '10px', marginRight: '30px', textAlign: 'center', fontSize: 'large' }} />
+                    <input type="number" className="no-spinner" style={{ height: '55px', width: '55px', border: 'gray solid 1px', borderRadius: '10px', marginRight: '30px', textAlign: 'center', fontSize: 'large' }} />
+                    <input type="number" className="no-spinner" style={{ height: '55px', width: '55px', border: 'gray solid 1px', borderRadius: '10px', marginRight: '30px', textAlign: 'center', fontSize: 'large' }} />
+                    <input type="number" className="no-spinner" style={{ height: '55px', width: '55px', border: 'gray solid 1px', borderRadius: '10px', marginRight: '30px', textAlign: 'center', fontSize: 'large' }} />
+                    <input type="number" className="no-spinner" style={{ height: '55px', width: '55px', border: 'gray solid 1px', borderRadius: '10px', marginRight: '30px', textAlign: 'center', fontSize: 'large' }} />
+                    <input type="number" className="no-spinner" style={{ height: '55px', width: '55px', border: 'gray solid 1px', borderRadius: '10px', textAlign: 'center', fontSize: 'large' }} />
                 </div>
                 <div style={{ textAlign: 'center' }}>
                     <p style={{ color: 'purple', fontSize: '14px', marginTop: '30px' }}>Didn't receive a code? Resend</p>
@@ -41,7 +41,14 @@ export default function verification() {
                             Sign in  <span style={{ marginLeft: '10px' }}><i class="fa fa-arrow-right"></i></span>
                         </button>
                     </Link>
-
+                </div>
+                <div style={{ position: 'absolute', bottom: '20px', left: '20px' }}>
+                    <p style={{ fontSize: '14px' }}>
+                        By proceeding, you agree to the
+                        <span style={{ color: 'purple', cursor: 'pointer' }}> terms and conditions </span>
+                        and
+                        <span style={{ color: 'purple', cursor: 'pointer' }}> privacy policy</span>.
+                    </p>
                 </div>
             </div>
         </section>

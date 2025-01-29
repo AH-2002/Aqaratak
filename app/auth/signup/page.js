@@ -1,10 +1,11 @@
 import Image from "next/image"
-import Link from 'next/link';
+import Validation from "./Validation";
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome styles
 
 export default function signup() {
 
     return (
-        <section style={{ width: '95%', margin: 'auto' }}>
+        <section style={{ width: '95%', margin: 'auto',padding:'10px 0' }}>
             <nav>
                 <Image
                     src='/logo.png'
@@ -33,100 +34,15 @@ export default function signup() {
                 </div>
             </div>
 
-            <div
-                className="rounded-lg bg-white p-6 shadow-4 dark:bg-surface-dark"
-                style={{ background: 'transparent', width: '65%', margin: 'auto' }}>
-                <form className='signup-form'>
-                    <div className="flex justify-between mb-6">
-                        <div className="relative w-[48%]">
-                            <input
-                                type="text"
-                                className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                id="exampleInput123"
-                                aria-describedby="emailHelp123"
-                            />
-                            <label
-                                htmlFor="exampleInput123"
-                                className="absolute left-3 bottom-12 mb-0 text-neutral-500"
-                            >
-                                First name
-                            </label>
-                        </div>
-
-                        <div className="relative w-[48%]">
-                            <input
-                                type="text"
-                                className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                id="exampleInput124"
-                                aria-describedby="emailHelp124"
-                            />
-                            <label
-                                htmlFor="exampleInput124"
-                                className="absolute left-3 bottom-12 mb-0 text-neutral-500"
-                            >
-                                Last name
-                            </label>
-                        </div>
-                    </div>
-
-
-                    <div className="relative mb-6" data-twe-input-wrapper-init>
-                        <input
-                            type="email"
-                            className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                            id="exampleInput125"
-                            style={{ marginTop: '15px' }}
-                        />
-                        <label
-                            for="exampleInput125"
-                            className="absolute left-3 bottom-12 mb-0 text-neutral-500"
-                        >Email address
-                        </label>
-                    </div>
-
-                    <div className="relative mb-6" data-twe-input-wrapper-init>
-                        <input
-                            type="password"
-                            className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                            id="exampleInput126"
-                            style={{ marginTop: '38px' }}
-
-                        />
-                        <label
-                            for="exampleInput126"
-                            className="absolute left-3 bottom-12 mb-0 text-neutral-500"
-                        >Password
-                        </label>
-                    </div>
-
-                    <div className="relative mb-6" data-twe-input-wrapper-init>
-                        <input
-                            type="password"
-                            className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                            id="exampleInput127"
-                            style={{ marginTop: '38px' }}
-
-                        />
-                        <label
-                            for="exampleInput127"
-                            className="absolute left-3 bottom-12 mb-0 text-neutral-500"
-
-                        >Confirm Password
-                        </label>
-                    </div>
-
-                    <Link href="/auth/verification">
-                        <button
-                            type="submit"
-                            className="inline-block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-                            data-twe-ripple-init
-                            data-twe-ripple-color="light"
-                            style={{ background: 'linear-gradient(to bottom, rgba(75, 2, 75, 0.655), rgba(213, 56, 213, 0.852))', color: 'white', padding: '20px', borderRadius: '30px' }}>
-                            Continue <span style={{ marginLeft: '10px' }}><i class="fa fa-arrow-right"></i></span>
-                        </button>
-                    </Link>
-                </form>
-            </div>
+            <Validation />
+                <div>
+                    <p style={{ fontSize: '14px' }}>
+                        By proceeding, you agree to the
+                        <span style={{ color: 'purple', cursor: 'pointer' }}> terms and conditions </span>
+                        and
+                        <span style={{ color: 'purple', cursor: 'pointer' }}> privacy policy</span>.
+                    </p>
+                </div>
         </section >
     )
 }

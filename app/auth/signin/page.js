@@ -2,7 +2,7 @@ import Image from "next/image"
 export default function signin() {
 
     return (
-        <section style={{ width: '95%', margin: 'auto' }}>
+        <section style={{ width: '95%', margin: 'auto', padding: '10px 0' }}>
             <nav>
                 <Image
                     src='/logo.png'
@@ -73,6 +73,14 @@ export default function signin() {
                         style={{ background: 'linear-gradient(to bottom, rgba(75, 2, 75, 0.655), rgba(213, 56, 213, 0.852))', color: 'white', padding: '20px', borderRadius: '30px' }}>
                         Continue  <span style={{ marginLeft: '10px' }}><i class="fa fa-arrow-right"></i></span>
                     </button>
+                    <div style={{ position: 'absolute', bottom: '20px', left: '20px' }}>
+                        <p style={{ fontSize: '14px' }}>
+                            By proceeding, you agree to the
+                            <span style={{ color: 'purple', cursor: 'pointer' }}> terms and conditions </span>
+                            and
+                            <span style={{ color: 'purple', cursor: 'pointer' }}> privacy policy</span>.
+                        </p>
+                    </div>
                 </form>
             </div>
         </section >

@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function register() {
 
     return (
-        <section className='register'>
+        <section className='register' style={{ padding:'10px 0' }}>
             <nav style={{ display: 'flex', justifyContent: 'space-between', margin: '0 50px' }}>
                 <div>
                     <Image
@@ -53,7 +53,7 @@ export default function register() {
                 </div>
             </nav>
             <div className='max-w-screen-xl mx-auto px-4'>
-                <div className='text-left'>
+                <div className='text-left sm:text-center'>
                     <h2>Create Aqar tech Account</h2>
                     <p className='my-5'>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -88,6 +88,14 @@ export default function register() {
                         </span>
                         </p>
                     </div>
+                </div>
+                <div style={{ position: 'absolute', bottom: '20px', left: '20px' }}>
+                    <p style={{ fontSize: '14px' }}>
+                        By proceeding, you agree to the
+                        <span style={{ color: 'purple', cursor: 'pointer' }}> terms and conditions </span>
+                        and
+                        <span style={{ color: 'purple', cursor: 'pointer' }}> privacy policy</span>.
+                    </p>
                 </div>
             </div>
         </section >
