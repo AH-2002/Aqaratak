@@ -1,9 +1,16 @@
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import Image from "next/image";
 import Link from 'next/link';
 import Brands from "./Brands";
+import Purchase from "./Purchase";
+import Rent from "./Rent";
+import ScrollToUp from "./ScrollToUp";
+import Service from "./Service";
+
 export default function home() {
+
     return (
-        <section className='max-w-8xl mx-auto px-4 sm:px-6 lg:px-8'>
+        <section style={{ position: 'relative' }} className='max-w-8xl mx-auto px-4 sm:px-6 lg:px-8'>
             <nav className="bg-transparent px-2">
                 <div className="">
                     <div className="flex justify-between h-16">
@@ -40,7 +47,7 @@ export default function home() {
                     </div>
                 </div>
             </nav>
-            <main style={{ padding: '20px 0', width: '100%', height: '100vh', position: 'relative',background:'transparent' }}>
+            <main style={{ padding: '20px 0', width: '100%', height: '100vh', position: 'relative', background: 'transparent' }}>
                 <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
                     <Image
                         src='/background3.jpg'
@@ -129,6 +136,10 @@ export default function home() {
 
             </main>
             <Brands />
+            <Purchase />
+            <Rent />
+            <Service />
+            <ScrollToUp/>
         </section>
     )
 }
