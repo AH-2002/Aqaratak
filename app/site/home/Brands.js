@@ -3,7 +3,7 @@ export default function Brands() {
     return (
         <section style={{ padding: '30px 0', marginTop: '30px', background: 'white',borderRadius:'10px' }}>
             <p style={{textAlign:'center',fontSize:'large',fontWeight:'bold',marginTop:'10px'}}>Trusted by 20,000+ companies</p>
-            <div style={{ background: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div className='brands' style={{ background: 'white', display: 'flex', justifyContent: 'space-evenly', alignItems: 'center'}}>
                 <div style={{ width: '250px', height: '150px', position: 'relative' }}>
                     <Image
                         src='/google.jpg'

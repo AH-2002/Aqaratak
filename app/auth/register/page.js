@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from 'next/link';
+import ChooseCountry from "./ChooseCountry";
 
 export default function register() {
 
     return (
-        <section className='register' style={{ padding:'10px 0' }}>
+        <section className='register' style={{ padding: '10px 0' }}>
             <nav style={{ display: 'flex', justifyContent: 'space-between', margin: '0 50px' }}>
                 <div>
                     <Image
@@ -15,41 +16,8 @@ export default function register() {
                     />
                 </div>
                 <div className="relative group" style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }} >
-                    <span style={{ marginRight: '2px' }}>I'm located in </span>
-                    <button
-                        className="flex items-center bg-primary px-6 py-2 text-white rounded hover:bg-primary-accent focus:outline-none"
-                        style={{ background: 'rgba(4, 4, 4, 0.132)', color: 'black', display: 'inline-block' }}
-                    >
-                        Choose Country
-                    </button>
+                    <ChooseCountry />
 
-                    {/* Dropdown Menu */}
-                    <ul style={{ background: 'rgba(4, 4, 4, 0.132)' }} className="absolute right-0 z-10 w-48 mt-2 bg-white border rounded-lg shadow-lg dark:bg-surface-dark group-hover:block hidden">
-                        <li>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-600"
-                            >
-                                Egypt
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-600"
-                            >
-                                <span>United Arabic Emirates</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-600"
-                            >
-                                Something else here
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </nav>
             <div className='max-w-screen-xl mx-auto px-4'>

@@ -49,3 +49,14 @@ body {
 .no-spinner {
   -moz-appearance: textfield; /* Firefox */
 }
+
+  @media (max-width: 640px) {
+    .inputs {
+      width: 100% !important;
+    }
+    .brands,.purchase{
+      flex-direction: column !important;
+
+    }
+
+  }

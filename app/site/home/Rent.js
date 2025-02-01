@@ -27,7 +27,7 @@ export default function Rent() {
     return (
         <section style={{ padding: '50px 0' }}>
             <h1 style={{ fontWeight: 'bolder', fontSize: 'larger', marginBottom: '25px' }}>Explore our Apartments for rent</h1>
-            <div className='flex flex-wrap gap-4 justify-between'>
+            <div className="purchase grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {(data.map((item) => (
                     <Card
                         key={item.id}

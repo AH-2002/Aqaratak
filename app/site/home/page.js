@@ -1,135 +1,103 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Image from "next/image";
-import Link from 'next/link';
 import Brands from "./Brands";
 import Purchase from "./Purchase";
 import Rent from "./Rent";
 import ScrollToUp from "./ScrollToUp";
 import Service from "./Service";
-
+import Navbar from "./Navbar";
 export default function home() {
-
     return (
-        <section style={{ position: 'relative' }} className='max-w-8xl mx-auto px-4 sm:px-6 lg:px-8'>
-            <nav className="bg-transparent px-2">
-                <div className="">
-                    <div className="flex justify-between h-16">
-                        <div className="flex justify-between">
-                            <div style={{ marginRight: "70px", marginTop: '5px', alignItems: 'center' }}>
-                                <Image
-                                    src='/logo.png'
-                                    alt='Logo'
-                                    width={50}
-                                    height={50}
+        <section className='max-w-8xl mx-auto px-4 sm:px-6 lg:px-8'>
+            <Navbar />
+            <main style={{ padding: '20px 0', width: '100%', height: '100vh', position: 'relative', background: 'transparent' }}>
+                <div style={{ width: '100%', height: '100vh', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <div>
+                        <Image
+                            src='/background3.jpg'
+                            alt='Background'
+                            layout='fill'
+                            objectFit='cover'
+                            style={{ filter: 'brightness(60%)', borderRadius: '10px' }}
+                        />
+                    </div>
+                    <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center',width:'100%' }}>
+                        <p style={{ fontSize: '50px', color: 'White', width: '600px', textAlign: 'center' }}>Let's find a villa That's Perfect for you</p>
+                        <div className='inputs' style={{
+                            background: 'white', width: '90%', padding: "20px",
+                            display: 'flex', justifyContent:'space-between', alignItems: 'center', flexWrap: 'wrap',
+                            borderRadius: '10px',
+                        }}>
+                            
+                            <div>
+                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
+                                    Looking for
+                                </label>
+                                <input
+                                    type="email"
+                                    className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                    id="first-input"
+                                    placeholder='What are you look for?'
+                                    style={{ border: '1px solid gray', borderRadius: '10px' }}
                                 />
                             </div>
-
-                            <div className="flex items-center text-center space-x-10">
-                                <Link href="/site/home">
-                                    <button>Home</button>
-                                </Link>
-                                <Link href="/site/rent">
-                                    <button>Rent</button>
-                                </Link>
-                                <Link href="/site/services">
-                                    <button>Services</button>
-                                </Link>
-                                <Link href="/site/favourite">
-                                    <button>Favourite</button>
-                                </Link>
-
+                            <div>
+                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
+                                    Type
+                                </label>
+                                <input
+                                    type="email"
+                                    className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                    id="first-input"
+                                    placeholder='What are you look for?'
+                                    style={{ border: '1px solid gray', borderRadius: '10px' }}
+                                />
                             </div>
-                        </div>
-                        <div className="flex items-center space-x-4">
-                            <button className="text-gray-800 hover:text-gray-600 px-10 py-2 rounded-md text-sm font-medium">Sign In</button>
-                            <button className="bg-purple-500 text-white px-10 py-2 rounded-md text-sm font-medium hover:bg-purple-600">Sign Up</button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <main style={{ padding: '20px 0', width: '100%', height: '100vh', position: 'relative', background: 'transparent' }}>
-                <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
-                    <Image
-                        src='/background3.jpg'
-                        alt='Background'
-                        layout='fill'
-                        objectFit='cover'
-                        style={{ filter: 'brightness(60%)', borderRadius: '10px' }}
-                    />
-                    <p style={{ fontSize: '50px', color: 'White', position: 'absolute', top: '25%', left: '525px', width: '600px', textAlign: 'center' }}>Let's find a villa That's Perfect for you</p>
-                    <div style={{
-                        background: 'white', width: '90%', padding: "20px",
-                        display: 'flex', justifyContent: 'space-evenly', alignItems: 'center',
-                        position: 'absolute', bottom: '100px', left: '80px', borderRadius: '10px'
-                    }}>
-                        <div>
-                            <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} for="first-input">
-                                Looking for
-                            </label>
-                            <input
-                                type="email"
-                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                id="first-input"
-                                placeholder='What are you look for?'
-                                style={{ border: '1px solid gray', borderRadius: '10px' }}
-                            />
-                        </div>
-                        <div>
-                            <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} for="first-input">
-                                Type
-                            </label>
-                            <input
-                                type="email"
-                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                id="first-input"
-                                placeholder='What are you look for?'
-                                style={{ border: '1px solid gray', borderRadius: '10px' }}
-                            />
-                        </div>
-                        <div>
-                            <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} for="first-input">
-                                Price
-                            </label>
-                            <input
-                                type="email"
-                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                id="first-input"
-                                placeholder='What are you look for?'
-                                style={{ border: '1px solid gray', borderRadius: '10px' }}
-                            />
-                        </div>
-                        <div>
-                            <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} for="first-input">
-                                Location
-                            </label>
-                            <input
-                                type="email"
-                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                id="first-input"
-                                placeholder='What are you look for?'
-                                style={{ border: '1px solid gray', borderRadius: '10px' }}
-                            />
-                        </div>
-                        <div>
-                            <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} for="first-input">
-                                Location
-                            </label>
-                            <input
-                                type="email"
-                                className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                id="first-input"
-                                placeholder='What are you look for?'
-                                style={{ border: '1px solid gray', borderRadius: '10px' }}
-                            />
-                        </div>
-                        <div style={{ marginTop: '25px' }}>
-                            <input
-                                type="search"
-                                className="text-center bg-purple-500 peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                id="first-input"
-                                placeholder='search'
-                                style={{ border: 'none', borderRadius: '10px' }}
-                            />
+                            <div>
+                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
+                                    Price
+                                </label>
+                                <input
+                                    type="email"
+                                    className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                    id="first-input"
+                                    placeholder='What are you look for?'
+                                    style={{ border: '1px solid gray', borderRadius: '10px' }}
+                                />
+                            </div>
+                            <div>
+                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
+                                    Location
+                                </label>
+                                <input
+                                    type="email"
+                                    className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                    id="first-input"
+                                    placeholder='What are you look for?'
+                                    style={{ border: '1px solid gray', borderRadius: '10px' }}
+                                />
+                            </div>
+                            <div>
+                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
+                                    Location
+                                </label>
+                                <input
+                                    type="email"
+                                    className="peer block min-h-[auto] bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                    id="first-input"
+                                    placeholder='What are you look for?'
+                                    style={{ border: '1px solid gray', borderRadius: '10px' }}
+                                />
+                            </div>
+                            <div style={{ marginTop: '25px' }}>
+                                <input
+                                    type="search"
+                                    className="text-center bg-purple-500 peer block min-h-[auto] px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
+                                    id="first-input"
+                                    placeholder='search'
+                                    style={{ border: 'none', borderRadius: '10px' }}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -139,7 +107,7 @@ export default function home() {
             <Purchase />
             <Rent />
             <Service />
-            <ScrollToUp/>
+            <ScrollToUp />
         </section>
     )
 }

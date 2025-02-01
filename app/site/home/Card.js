@@ -1,21 +1,17 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Image from "next/image";
+import FavouriteButton from "./FavouriteButton";
 export default function Card({ id, src, title, alt, price }) {
     
     return (
-            <div style={{width:'30%'}} className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-200">
+            <div className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-200">
                 <div style={{ position: 'relative', width: '100%', height: '400px' }}>
                     <Image
                         src={src}
                         alt={alt}
                         layout='fill'
                         objectFit='cover' />
-                    <div style={{
-                        background: 'white', position: 'absolute', top: '10px', right: '10px',
-                        padding: '10px', borderRadius: '50%', width: '50px', height: '50px', textAlign: 'center', fontSize: '25px'
-                    }}>
-                        <i style={{ color: 'black', }} className="fa-regular fa-heart"></i>
-                    </div>
+                    <FavouriteButton />
                 </div>
                 <div className="p-5">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: 'bold' }}>
