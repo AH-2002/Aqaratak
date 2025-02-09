@@ -1,4 +1,3 @@
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import Image from "next/image";
 import Brands from "./Brands";
 import Purchase from "./Purchase";

@@ -1,7 +1,7 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Link from "next/link";
 import Card from "./Card";
-export default function Explore() {
+export default function Purchase() {
     const data = [{
         id: 1,
         src: "/background3.jpg",

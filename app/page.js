@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from 'next/link';
+
 export default function app() {
   return (
     <div className="flex justify-center items-center min-h-screen">
