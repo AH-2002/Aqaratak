@@ -69,7 +69,19 @@ body {
         margin-top: 20px;
     }
 }
-
+@media (max-width: 1645px) {
+    .apartmentDetails{
+        flex-direction: column !important;
+    }
+    .apartmentDetails .gallery , .apartmentDetails .brief{
+        width: 100% !important;
+        margin-bottom: 10px;
+        text-align: center !important;
+    }
+    .apartmentDetails .rentalPeriod{
+        width: 100% !important;
+    }
+}
 .swiper {
     width: 100%;
     height: 100%;

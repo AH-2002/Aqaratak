@@ -19,8 +19,8 @@ export default function ApartmentDetails() {
                         />
                     </div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', margin: '20px 0 15px 0' }}>
-                    <div style={{ width: '64%' }}>
+                <div className='apartmentDetails' style={{ display: 'flex', justifyContent: 'space-between', margin: '20px 0 15px 0' }}>
+                    <div className='gallery' style={{ width: '64%' }}>
                         <div>
                             <p style={{ fontSize: 'large' }}>
                                 Griya Asri tamansari
@@ -29,7 +29,7 @@ export default function ApartmentDetails() {
                                 <i style={{ color: "gray", marginRight: "10px" }} className="fa-solid fa-location-dot"></i>
                                 Abudhabi
                             </p>
-                            <p>
+                            <p style={{ marginBottom: '20px' }}>
                                 <span style={{ fontWeight: 'bolder', fontSize: 'larger' }}>Description:</span>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo.
                                 Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor.
@@ -37,8 +37,8 @@ export default function ApartmentDetails() {
                             </p>
                         </div>
                         <div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '15px' }}>
-                                <div style={{ position: 'relative', width: '32.5%', height: '25vh' }}>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+                                <div style={{ position: 'relative', height: '25vh' }}>
                                     <Image
                                         src='/background3.jpg'
                                         alt='Background'
@@ -47,7 +47,7 @@ export default function ApartmentDetails() {
                                         style={{ borderRadius: '10px' }}
                                     />
                                 </div>
-                                <div style={{ position: 'relative', width: '32.5%', height: '25vh' }}>
+                                <div style={{ position: 'relative', height: '25vh' }}>
                                     <Image
                                         src='/background3.jpg'
                                         alt='Background'
@@ -56,7 +56,7 @@ export default function ApartmentDetails() {
                                         style={{ borderRadius: '10px' }}
                                     />
                                 </div>
-                                <div style={{ position: 'relative', width: '32.5%', height: '25vh' }}>
+                                <div style={{ position: 'relative', height: '25vh' }}>
                                     <Image
                                         src='/background3.jpg'
                                         alt='Background'
@@ -68,7 +68,7 @@ export default function ApartmentDetails() {
                             </div>
                         </div>
                     </div>
-                    <div style={{ width: '34%' }}>
+                    <div className='brief' style={{ width: '34%' }}>
                         <div style={{ width: '100%', boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)" }} className="rounded-2xl overflow-hidden shadow-lg bg-white p-5">
                             <div>
                                 <p>
@@ -93,6 +93,7 @@ export default function ApartmentDetails() {
                                 </div>
                             </div>
                             <div
+                                className='rentalPeriod'
                                 style={{
                                     display: "flex",
                                     border: "2px solid #ccc",
