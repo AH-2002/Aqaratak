@@ -70,9 +70,7 @@ body {
     }
 }
 @media (max-width: 1645px) {
-    .apartmentDetails{
-        flex-direction: column !important;
-    }
+  
     .apartmentDetails .gallery , .apartmentDetails .brief{
         width: 100% ;
         margin-bottom: 10px;
