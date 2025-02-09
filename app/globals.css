@@ -75,7 +75,7 @@ body {
     }
   
     .apartmentDetails .gallery , .apartmentDetails .brief{
-        width: 100% ;
+        width: 100% !important;
         margin-bottom: 10px;
         text-align: center !important;
     }
