@@ -1,6 +1,7 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import Image from "next/image";
+import Link from "next/link";
 import Card from "./Card";
+Link
 export default function Service() {
     const data = [{
         id: 1,
@@ -24,19 +25,20 @@ export default function Service() {
         price: '500,000 AED'
     }
     ];
-    console.log("Data received:", data);
     return (
         <section style={{ padding: '50px 0' }}>
             <h1 style={{ fontWeight: 'bolder', fontSize: 'larger', marginBottom: '25px' }}>Explore our Apartments for service</h1>
             <div className="purchase grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {(data.map((item) => (
-                    <Card
-                        key={item.id}
-                        src={item.src}
-                        alt={item.alt}
-                        title={item.title}
-                        price={item.price}
-                    />
+                    <Link href='/site/RentPage'>
+                        <Card
+                            key={item.id}
+                            src={item.src}
+                            alt={item.alt}
+                            title={item.title}
+                            price={item.price}
+                        />
+                    </Link>
                 )))}
 
             </div>

@@ -18,7 +18,7 @@ export default function Navbar() {
                     </div>
 
                     <div className="hidden md:flex justify-center items-center space-x-10">
-                        <Link href="/site/home"><button>Home</button></Link>
+                        <Link href="/site/Home"><button>Home</button></Link>
                         <Link href="/site/rent"><button>Rent</button></Link>
                         <Link href="/site/services"><button>Services</button></Link>
                         <Link href="/site/favourite"><button>Favourite</button></Link>

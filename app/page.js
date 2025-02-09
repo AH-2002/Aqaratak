@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from 'next/link';
-import '/globals.css';
-export default function site() {
+export default function app() {
   return (
     <div className="flex justify-center items-center min-h-screen">
       <Link href="/site/home">

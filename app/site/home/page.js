@@ -5,8 +5,9 @@ import Purchase from "./Purchase";
 import Rent from "./Rent";
 import ScrollToUp from "./ScrollToUp";
 import Service from "./Service";
-import Navbar from "./Navbar";
-export default function home() {
+import Navbar from "../Navbar";
+import Footer from "../Footer";
+export default function Home() {
     return (
         <section className='max-w-8xl mx-auto px-4 sm:px-6 lg:px-8'>
             <Navbar />
@@ -108,6 +109,7 @@ export default function home() {
             <Rent />
             <Service />
             <ScrollToUp />
+            <Footer />
         </section>
     )
 }
