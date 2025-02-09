@@ -80,6 +80,9 @@ body {
     }
    
 }
+ .apartmentDetails .rentalPeriod{
+        width: 100% !important;
+    }
 .swiper {
     width: 100%;
     height: 100%;
