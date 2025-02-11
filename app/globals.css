@@ -54,9 +54,6 @@ body {
 }
 
 @media (max-width: 1280px) {
-    .inputs {
-        width: 100% !important;
-    }
     .brands,
     .purchase {
         flex-direction: column !important;
@@ -80,6 +77,11 @@ body {
         text-align: center !important;
     }
    
+}
+@media (max-width: 525px) {
+.inputs .input{
+width: 100% !important;
+}
 }
 
  .apartmentDetails .rentalPeriod{
