@@ -86,7 +86,7 @@ body {
     }
    
 }
-.formLists{
+.footerLists{
     display:flex !important;
     justifyContent: space-evenly !important;
     width:50%;
