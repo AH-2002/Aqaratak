@@ -86,6 +86,11 @@ body {
     }
    
 }
+.formLists{
+    display:flex !important;
+    justifyContent: space-evenly !important;
+    width:50%;
+}
 @media (max-width: 525px) {
 .inputs .input, .inputs .input label,.inputs .input input{
 width: 100% !important;
