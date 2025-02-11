@@ -29,7 +29,7 @@ export default function Home() {
                             borderRadius: '10px',
                         }}>
                             
-                            <div>
+                            <div className='input'>
                                 <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
                                     Looking for
                                 </label>
@@ -41,7 +41,7 @@ export default function Home() {
                                     style={{ border: '1px solid gray', borderRadius: '10px' }}
                                 />
                             </div>
-                            <div>
+                            <div className='input'>
                                 <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
                                     Type
                                 </label>
@@ -53,7 +53,7 @@ export default function Home() {
                                     style={{ border: '1px solid gray', borderRadius: '10px' }}
                                 />
                             </div>
-                            <div>
+                            <div className='input'>
                                 <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
                                     Price
                                 </label>
@@ -65,7 +65,7 @@ export default function Home() {
                                     style={{ border: '1px solid gray', borderRadius: '10px' }}
                                 />
                             </div>
-                            <div>
+                            <div className='input'>
                                 <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
                                     Location
                                 </label>
@@ -77,7 +77,7 @@ export default function Home() {
                                     style={{ border: '1px solid gray', borderRadius: '10px' }}
                                 />
                             </div>
-                            <div>
+                            <div className='input'>
                                 <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
                                     Location
                                 </label>
@@ -89,7 +89,7 @@ export default function Home() {
                                     style={{ border: '1px solid gray', borderRadius: '10px' }}
                                 />
                             </div>
-                            <div style={{ marginTop: '25px' }}>
+                            <div className='input' style={{ marginTop: '25px' }}>
                                 <input
                                     type="search"
                                     className="text-center bg-purple-500 peer block min-h-[auto] px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
