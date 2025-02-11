@@ -17,7 +17,7 @@ export default function Footer() {
                         </div>
 
                     </div>
-                    <div className='footerLists'>
+                    <div>
                         <div>
 
                             <h3 style={{ fontSize: 'larger', fontWeight: 'bolder' }}>
