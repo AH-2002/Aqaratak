@@ -5,7 +5,7 @@ export default function Footer() {
         <section style={{ padding: '20px 0', color: 'white', background: 'linear-gradient(to bottom, rgba(75, 2, 75, 0.655), rgba(213, 56, 213, 0.852))' }}>
             <div style={{ width: '90%', margin: 'auto' }}>
                <div className='footerContent' style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                    <div style={{width:'50%'}}>
+                    <div className='shortDescription' style={{width:'50%'}}>
                         <div>
                             <Image src="/logo.png" alt="Logo" width={70} height={70} />
                         </div>
@@ -17,7 +17,7 @@ export default function Footer() {
                         </div>
 
                     </div>
-                    <div style={{display:'flex', justifyContnet:'space-evenly',width:'50%'}}>
+                    <div className='footerLists' style={{display:'flex', justifyContnet:'space-evenly',width:'50%'}}>
                         <div>
 
                             <h3 style={{ fontSize: 'larger', fontWeight: 'bolder' }}>
