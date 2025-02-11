@@ -79,7 +79,7 @@ body {
    
 }
 @media (max-width: 525px) {
-.inputs .input{
+.inputs .input, .inputs .input label,.inputs .input input{
 width: 100% !important;
 }
 }
