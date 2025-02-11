@@ -22,7 +22,7 @@ export default function Home() {
                         />
                     </div>
                     <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center',width:'100%' }}>
-                        <p style={{ fontSize: '50px', color: 'White', width: '600px', textAlign: 'center' }}>Let's find a villa That's Perfect for you</p>
+                        <p style={{ fontSize: '50px', color: 'White', width: '95%', textAlign: 'center' }}>Let's find a villa That's Perfect for you</p>
                         <div className='inputs' style={{
                             background: 'white', width: '95%', padding: "20px",
                             display: 'flex', justifyContent:'space-between', alignItems: 'center', flexWrap: 'wrap',
