@@ -58,8 +58,8 @@ export default function Navbar() {
             {
                 menuOpen && (
                     <div className="md:hidden flex flex-col space-y-4 px-4 py-2 bg-white shadow-md rounded-md">
-                        <Link href="/site/Home"><button>Home</button></Link>
-                        <Link href="/site/rent"><button>Rent</button></Link>
+                        <Link href="/site/home"><button>Home</button></Link>
+                        <Link href="/site/RentPage"><button>Rent</button></Link>
                         <Link href="/site/services"><button>Services</button></Link>
                         <Link href="/site/favourite"><button>Favourite</button></Link>
                         <button className="text-gray-800 hover:text-gray-600 px-4 py-2 rounded-md text-sm font-medium">Sign In</button>
