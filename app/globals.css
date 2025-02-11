@@ -52,7 +52,15 @@ body {
     -moz-appearance: textfield;
     /* Firefox */
 }
-
+@media (max-width: 1080px) {
+    .footerContent{
+        flex-direction:column;
+    }
+    .shortDescription,.footerLists{
+        width:100%;
+        text-align:'center';
+    }
+}
 @media (max-width: 1280px) {
     .brands,
     .purchase {
