@@ -21,14 +21,14 @@ export default function Home() {
                             style={{ filter: 'brightness(60%)', borderRadius: '10px' }}
                         />
                     </div>
-                    <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center',width:'100%' }}>
+                    <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
                         <p style={{ fontSize: '50px', color: 'White', width: '95%', textAlign: 'center' }}>Let's find a villa That's Perfect for you</p>
                         <div className='inputs' style={{
                             background: 'white', width: '95%', padding: "20px",
-                            display: 'flex', justifyContent:'space-between', alignItems: 'center', flexWrap: 'wrap',
+                            display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap',
                             borderRadius: '10px',
                         }}>
-                            
+
                             <div className='input'>
                                 <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
                                     Looking for
@@ -89,14 +89,10 @@ export default function Home() {
                                     style={{ border: '1px solid gray', borderRadius: '10px' }}
                                 />
                             </div>
-                            <div className='input' style={{ marginTop: '25px' }}>
-                                <input
-                                    type="search"
-                                    className="text-center bg-purple-500 peer block min-h-[auto] px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                    id="first-input"
-                                    placeholder='search'
-                                    style={{ border: 'none', borderRadius: '10px' }}
-                                />
+                            <div className='input' style={{ marginTop: '25px', color: 'white'}}>
+                                <button style={{fontSize:'larger',padding:'10px 60px', background: 'linear-gradient(to bottom, rgba(75, 2, 75, 0.655), rgba(213, 56, 213, 0.852))'}} className="rounded-md text-sm font-medium">
+                                <i style={{marginRight:'20px',fontSize:'20px'}} class="fa-solid fa-magnifying-glass"></i>Search</button>
+
                             </div>
                         </div>
                     </div>

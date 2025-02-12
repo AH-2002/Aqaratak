@@ -55,11 +55,19 @@ body {
 @media (max-width: 1080px) {
     .footerContent{
         flex-direction:column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
-    .shortDescription{
-        width:100%;
-        text-align:center;
+    .shortDescription, .footerLists{
+        width:100% !important;
+        margin: 20px 0;
     }
+    .footerImage{
+        display: flex;
+        justify-content: center;
+    }
+   
 }
 @media (max-width: 1280px) {
     .brands,
@@ -86,10 +94,22 @@ body {
     }
    
 }
+@media (max-width:840px){
+    .footerBottom{
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .footerBottomList{
+        margin-bottom: 20px;
+    }
+}
 @media (max-width: 525px) {
 .inputs .input, .inputs .input label,.inputs .input input{
 width: 100% !important;
 }
+
 }
 
  .apartmentDetails .rentalPeriod{

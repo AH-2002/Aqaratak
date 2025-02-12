@@ -4,20 +4,23 @@ export default function Footer() {
     return (
         <section style={{ padding: '20px 0', color: 'white', background: 'linear-gradient(to bottom, rgba(75, 2, 75, 0.655), rgba(213, 56, 213, 0.852))' }}>
             <div style={{ width: '90%', margin: 'auto' }}>
-               <div className='footerContent' style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap }}>
+               <div className='footerContent' style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                     <div className='shortDescription' style={{width:'50%'}}>
-                        <div>
-                            <Image src="/logo.png" alt="Logo" width={70} height={70} />
+                        <div className='footerImage'>
+                            <Image src="/logo.png"
+                             alt="Logo"
+                              width={70}
+                               height={70} />
                         </div>
-                        <div>
+                        <div className='descriptionContent'>
                             <h2 style={{ fontSize: 'larger', fontWeight: 'bolder', margin: '10px 0' }}>Aqar tech</h2>
-                            <p style={{ maxWidth: '500px' }}>
+                            <p>
                                 Aqar tech is a cutting-edge real estate technology platform that streamlines porperty management, buying, and selling through innovative digital solutions.
                             </p>
                         </div>
 
                     </div>
-                    <div>
+                    <div className='footerLists' style={{width:'50%', display:'flex',justifyContent:'space-evenly'}}>
                         <div>
 
                             <h3 style={{ fontSize: 'larger', fontWeight: 'bolder' }}>
@@ -79,8 +82,8 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px' }}>
-                    <div>
+                <div className='footerBottom' style={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px' }}>
+                    <div className='footerBottomList'>
                         <ul style={{ listStyle: 'none', display: 'flex', justifyContent: 'space-between' }}>
                             <li style={{ marginRight: '15px' }}>
                                 License
@@ -106,7 +109,7 @@ export default function Footer() {
                         <p> <i style={{ color: 'white' }} class="fa-regular fa-copyright"></i> Aqar tech 2024</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </div >
+        </section >
     )
 }

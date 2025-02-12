@@ -25,13 +25,12 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                {/* Desktop Sign In / Sign Up */}
                 <div className="hidden md:flex items-center space-x-4">
                     <Link href="/auth/signin">
                         <button className="text-gray-800 hover:text-gray-600 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-600 hover:text-white">Sign In</button>
                     </Link>
                     <Link href="/auth/register">
-                        <button className="bg-purple-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-600">Sign Up</button>
+                        <button style={{ background: 'linear-gradient(to bottom, rgba(75, 2, 75, 0.655), rgba(213, 56, 213, 0.852))' }} className="text-white px-4 py-2 rounded-md text-sm font-medium">Sign Up</button>
                     </Link>
                 </div>
 
