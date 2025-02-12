@@ -90,7 +90,7 @@ export default function Home() {
                                 />
                             </div>
                             <div className='input' style={{ marginTop: '25px', color: 'white'}}>
-                                <button className="searchButton" style={{fontSize:'larger',padding:'10px 60px', background: 'linear-gradient(to bottom, rgba(75, 2, 75, 0.655), rgba(213, 56, 213, 0.852))'}} className="rounded-md text-sm font-medium">
+                                <button style={{fontSize:'larger',padding:'10px 60px', background: 'linear-gradient(to bottom, rgba(75, 2, 75, 0.655), rgba(213, 56, 213, 0.852))'}} className="rounded-md text-sm font-medium">
                                 <i style={{marginRight:'20px',fontSize:'20px'}} className="fa-solid fa-magnifying-glass"></i>Search</button>
 
                             </div>
