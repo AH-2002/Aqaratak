@@ -30,7 +30,7 @@ export default function Home() {
                         }}>
 
                             <div className='input'>
-                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
+                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlFor="first-input">
                                     Looking for
                                 </label>
                                 <input
@@ -42,7 +42,7 @@ export default function Home() {
                                 />
                             </div>
                             <div className='input'>
-                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
+                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlFor="first-input">
                                     Type
                                 </label>
                                 <input
@@ -54,7 +54,7 @@ export default function Home() {
                                 />
                             </div>
                             <div className='input'>
-                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
+                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlFor="first-input">
                                     Price
                                 </label>
                                 <input
@@ -66,7 +66,7 @@ export default function Home() {
                                 />
                             </div>
                             <div className='input'>
-                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
+                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlFor="first-input">
                                     Location
                                 </label>
                                 <input
@@ -78,7 +78,7 @@ export default function Home() {
                                 />
                             </div>
                             <div className='input'>
-                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlfor="first-input">
+                                <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlFor="first-input">
                                     Location
                                 </label>
                                 <input
@@ -90,7 +90,7 @@ export default function Home() {
                                 />
                             </div>
                             <div className='input' style={{ marginTop: '25px', color: 'white'}}>
-                                <button style={{fontSize:'larger',padding:'10px 60px', background: 'linear-gradient(to bottom, rgba(75, 2, 75, 0.655), rgba(213, 56, 213, 0.852))'}} className="rounded-md text-sm font-medium">
+                                <button style={{fontSize:'larger',padding:'10px 60px', background: 'linear-gradient(to bottom, rgba(75, 2, 75, 0.655), rgba(213, 56, 213, 0.852))'}} className="searchButton rounded-md text-sm font-medium">
                                 <i style={{marginRight:'20px',fontSize:'20px'}} className="fa-solid fa-magnifying-glass"></i>Search</button>
 
                             </div>
