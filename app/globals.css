@@ -109,9 +109,7 @@ body {
 .inputs .input, .inputs .input label,.inputs .input input{
 width: 100% !important;
 }
-.inputs .input .searchButton{
-width: 100% !important;
-}
+
 
 }
 
