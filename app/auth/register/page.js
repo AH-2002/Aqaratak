@@ -20,8 +20,8 @@ export default function register() {
 
                 </div>
             </nav>
-            <div style={{ width: '30%', fontSize:'13px' ,margin: '40px auto' }}>
-                <div className='text-left sm:text-center'>
+            <div className='registerContent' style={{ width: '30%', fontSize:'13px' ,margin: '40px auto',textAlign:'center' }}>
+                <div>
                     <h2>Create Aqar tech Account</h2>
                     <p className='my-5'>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

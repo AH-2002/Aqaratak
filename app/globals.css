@@ -114,6 +114,16 @@ width: 100% !important;
 }
 
 }
+@media (max-width: 952px) {
+    .registerContent{
+        width: 50%;
+    }
+}
+@media (max-width: 605px) {
+    .registerContent{
+    width: 80%;
+    }
+}
 
  .apartmentDetails .rentalPeriod{
         width: 100% !important;
