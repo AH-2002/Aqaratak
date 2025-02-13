@@ -6,13 +6,13 @@ export default function register() {
 
     return (
         <section className='register' style={{ padding: '10px 0' }}>
-            <nav style={{ display: 'flex', justifyContent: 'space-between', margin: '0 50px' }}>
+            <nav style={{ display: 'flex', justifyContent: 'space-between', margin: '0 50px',fontSize:'14px' }}>
                 <div>
                     <Image
                         src='/logo.png'
                         alt='Logo'
-                        width={70}
-                        height={70}
+                        width={50}
+                        height={50}
                     />
                 </div>
                 <div className="relative group" style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }} >
