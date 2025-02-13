@@ -116,12 +116,12 @@ width: 100% !important;
 }
 @media (max-width: 952px) {
     .registerContent{
-        width: 50%;
+        width: 50% !important;
     }
 }
 @media (max-width: 605px) {
     .registerContent{
-    width: 80%;
+    width: 80% !important;
     }
 }
 
