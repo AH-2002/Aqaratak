@@ -6,7 +6,7 @@ export default function register() {
 
     return (
         <section className='register' style={{ padding: '10px 0' }}>
-            <nav style={{ display: 'flex', justifyContent: 'space-between', margin: '0 50px',fontSize:'14px' }}>
+            <nav style={{ display: 'flex', justifyContent: 'space-between', margin: '0 50px',fontSize:'13px' }}>
                 <div>
                     <Image
                         src='/logo.png'
