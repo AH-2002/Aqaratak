@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",  
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   }
 }
