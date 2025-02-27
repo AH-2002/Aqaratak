@@ -1,6 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { Roboto_Slab } from "next/font/google";
+import StoreProvider from "./store/storeProvider";
+
+const playfair = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,15 +23,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{metadata.title}</title>
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
-    </html>
+      <html lang="en">
+        <body className={`container ${playfair.className}`} style={{ width: "90%", margin: "auto" }}>
+          {children}
+        </body>
+      </html>
   );
 }

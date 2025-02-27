@@ -1,6 +1,6 @@
 import Image from "next/image"
-import Validation from "./Validation";
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome styles
+import Validation from "./Validation";
 
 export default function signup() {
 

@@ -1,6 +1,6 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Link from "next/link";
-import Card from "./Card";
+import Card from "../Cards/rentCard";
 export default function Purchase() {
     const data = [{
         id: 1,
