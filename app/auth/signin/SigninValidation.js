@@ -1,52 +1,108 @@
 "use client";
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { loginAction } from './loginAction';
+import { useEffect, useState } from 'react';
+import { setUserToken } from './serverToken';
 
-export default function signinValidation() {
+export default function SigninValidation() {
+    const api_URL = "https://realestate.learnock.com/";
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
     let router = useRouter();
     let [formData, setFormData] = useState({
         email: "",
         password: "",
     });
     let [errors, setErrors] = useState({});
+    useEffect(() => {
+        startTokenRefresh(); // Start auto refresh when component mounts
+    }, []);
 
     let handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
         setErrors({ ...errors, [e.target.name]: "" });
+        console.log(formData)
     }
     let handleSubmit = async (e) => {
         e.preventDefault();
         let validationError = {};
 
         if (!formData.email.trim()) {
-            validationError.email = "Email is rquired";
+            validationError.email = "Email is required";
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
             validationError.email = "Invalid email format";
         }
         if (!formData.password.trim()) {
-            validationError.password = "Password is rquired";
+            validationError.password = "Password is required";
         } else if (formData.password.length < 6) {
             validationError.password = "Password must be at least 6 characters";
         }
 
         setErrors(validationError);
-        if (Object.keys(validationError).length === 0) {
-            console.log("Submitting login request..."); // ✅ Debug log 1
-            try {
-                const result = await loginAction(formData);
-                if (result.status === 200) {
-                    console.log("Login Action Result:", result); // ✅ Debug log 2
 
-                    router.push("/site/home");
-                } else {
-                    setErrors({ general: result.message });
-                }
-            } catch (error) {
-                setErrors({ general: "Login failed. Please try again." });
+        if (Object.keys(validationError).length !== 0) return; // Ensure errors are checked after setting
+
+        try {
+            const response = await fetch(`${api_URL}api/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "apiKey": apiKey
+                },
+                body: JSON.stringify({
+                    email: formData.email,
+                    password: formData.password
+                })
+            });
+
+            console.log("login data", response);
+            const responseData = await response.json();
+            console.log("json login data", responseData);
+            if (response.status === 200) {
+                const token = responseData.data;
+                localStorage.setItem("userToken", token);
+                startTokenRefresh();
+                await setUserToken(token);
+                router.push("/site/home");
             }
-        };
-    }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            setErrors({ general: "Something went wrong. Please try again." });
+        }
+    };
+
+
+    const refreshAccessToken = async () => {
+        try {
+            const response = await fetch(`${api_URL}api/auth/refresh`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "apiKey": apiKey,
+                },
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                const newAccessToken = responseData.access_token;
+                console.log("new access token", newAccessToken);
+                localStorage.setItem("userToken", newAccessToken);
+                await setUserToken(newAccessToken);
+            } else {
+                console.error("Failed to refresh token");
+            }
+        } catch (error) {
+            console.error("Error refreshing token:", error);
+        }
+    };
+
+    const startTokenRefresh = () => {
+        setInterval(() => {
+            refreshAccessToken();
+        }, 55 * 60 * 1000); // Refresh token every 55 minutes
+    };
+
+
     return (
         <div
             className="rounded-lg bg-white p-6 shadow-4 dark:bg-surface-dark"
@@ -58,6 +114,7 @@ export default function signinValidation() {
                     </div>
                 )}
 
+
                 <div className="relative mb-6" data-twe-input-wrapper-init>
                     <label htmlFor="email" className="block text-gray-700 font-medium">
                         Email
@@ -65,7 +122,7 @@ export default function signinValidation() {
                     <input
                         type="email"
                         className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                        id="exampleInput125"
+                        id="email"
                         name='email'
                         value={formData.email}
                         onChange={handleChange}
@@ -81,7 +138,7 @@ export default function signinValidation() {
                     <input
                         type="password"
                         className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                        id="exampleInput126"
+                        id="password"
                         name='password'
                         value={formData.password}
                         onChange={handleChange}
@@ -91,6 +148,7 @@ export default function signinValidation() {
                     {errors.password && <p className='text-red-500 text-sm mt-1'>{errors.password}</p>}
 
                 </div>
+
 
                 <button
                     type="submit"

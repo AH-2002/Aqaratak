@@ -1,34 +1,52 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function UserActions({ user }) {
-    const api_URL = "http://localhost:3001";
+export default function UserActions({ profile }) {
+    const api_URL = "https://realestate.learnock.com/";
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const [token, setToken] = useState("");
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email,
-        phone: user.phone,
-        role: user.role,
+        first_name: profile.first_name || "",
+        last_name: profile.last_name || "",
+        email: profile.email || "",
+        phone: profile.phone || "",
+        role: profile.role || "tenant",
         password: "",
         password_confirmation: "",
-        image: user.image,
+        image:"/user.jpg",
     });
 
+
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem("userToken");
+        setToken(storedToken);
+    }, []);
     // Handle input change
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({ ...formData, [e.target.name]: e.target.value || "" });
     };
+
 
     // Handle update
     const handleUpdate = async (e) => {
         e.preventDefault();
 
-        const response = await fetch(`${api_URL}/users/${user.id}`, {
+        const response = await fetch(`${api_URL}api/user/${profile.id}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "apiKey": apiKey,
+                "Authorization": `Bearer ${token}`
+            },
             body: JSON.stringify(formData),
         });
+        const parsedResponse = await response.json()
+        console.log("response", response)
+        console.log("parsedResponse", parsedResponse)
+
 
         if (!response.ok) {
             alert("Failed to update user");
@@ -37,14 +55,23 @@ export default function UserActions({ user }) {
 
         alert("User updated successfully!");
         setIsEditing(false);
+        window.location.reload(); // Refresh user list
+
     };
 
     // Handle delete
     const handleDelete = async () => {
         if (!confirm("Are you sure you want to delete this user?")) return;
 
-        const response = await fetch(`${api_URL}/api/users/${user.id}`, {
+        const response = await fetch(`${api_URL}api/user/${profile.id}`, {
             method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "apiKey": apiKey,
+                "Authorization": `Bearer ${token}`
+
+            },
         });
 
         if (!response.ok) {

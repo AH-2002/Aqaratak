@@ -56,6 +56,9 @@ html[lang="ar"] {
     -moz-appearance: textfield;
     /* Firefox */
 }
+.dropdownMenu{
+    z-index: 100 !important;
+}
 @media (max-width: 1080px) {
     .footerContent{
         flex-direction:column;

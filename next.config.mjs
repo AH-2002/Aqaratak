@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {},
+  images: {
+    domains: ["realestate.learnock.com", "example.com"], // Add your image domains here
+  },
 };
 
 export default nextConfig;

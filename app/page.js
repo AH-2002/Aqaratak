@@ -1,12 +1,10 @@
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import jwt from "jsonwebtoken"; 
-export default function Page() {
-  const token = cookies().get("userToken")?.value;
+import { getUserToken } from "./userRole/getUserToken";
+
+export default async function Page() {
+  const token = await getUserToken();
   if (token) {
-    try {
-      jwt.verify(token, process.env.JWT_SECRET);
-      
+    try {      
       redirect("/site/home");
     } catch (error) {
       console.error("Invalid token:", error);

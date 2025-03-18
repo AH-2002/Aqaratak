@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Roboto_Slab } from "next/font/google";
-import StoreProvider from "./store/storeProvider";
+import { ProfileProvider } from "./context/profileContext";
 
 const playfair = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -23,10 +23,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-      <html lang="en">
-        <body className={`container ${playfair.className}`} style={{ width: "90%", margin: "auto" }}>
+    <html lang="en">
+      <body className={`container ${playfair.className}`} style={{ width: "90%", margin: "auto" }}>
+        <ProfileProvider>
           {children}
-        </body>
-      </html>
+        </ProfileProvider>
+      </body>
+    </html>
   );
 }

@@ -1,15 +1,16 @@
 "use client";
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function Validation() {
-    const api_URL = "http://localhost:3001";
+    const api_URL = "https://realestate.learnock.com/";
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
     let router = useRouter();
     let [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
+        first_name: "",
+        last_name: "",
         email: "",
+        phone: "",
         password: "",
         confirmPassword: "",
     });
@@ -24,11 +25,11 @@ export default function Validation() {
         e.preventDefault();
         let validationError = {};
 
-        if (!formData.firstName.trim()) {
-            validationError.firstName = "First name is required";
+        if (!formData.first_name.trim()) {
+            validationError.first_name = "First name is required";
         }
-        if (!formData.lastName.trim()) {
-            validationError.lastName = "Last name is rquired";
+        if (!formData.last_name.trim()) {
+            validationError.last_name = "Last name is rquired";
         }
         if (!formData.email.trim()) {
             validationError.email = "Email is rquired";
@@ -45,29 +46,67 @@ export default function Validation() {
         } else if (formData.confirmPassword !== formData.password) {
             validationError.confirmPassword = "Password doesn't match"
         }
-        setErrors(validationError);
-        if (Object.keys(validationError).length === 0) {
-            console.log("form submitted successfully!", formData);
-        }
-        const response = await fetch(`${api_URL}/register`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                email: formData.email,
-                password: formData.password
-            }),
-        });
-        const json_response = await response.json();
-        if (json_response.message === 'Register Successful' && json_response.status === 201) {
-            router.push('/auth/signin');
-        }
-        else {
-            setErrors({ general: json_response.message });
+        if (!formData.phone.trim()) {
+            validationError.phone = "Phone number is required";
+        } else if (!/^\+?\d{10,15}$/.test(formData.phone)) {
+            validationError.phone = "Invalid phone number format";
         }
 
-    }
+
+
+        setErrors(validationError);
+        if (Object.keys(validationError).length !== 0) return;
+
+        console.log("Validation passed, sending OTP requests...");
+
+        try {
+            const otpPromiseMail = await fetch(`${api_URL}api/auth/otp_mail`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "apiKey": apiKey
+                },
+                body: JSON.stringify({
+                    email: formData.email
+                })
+            })
+            const otpPromisPhone = await fetch(`${api_URL}api/auth/otp_phone`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "apiKey": apiKey
+                },
+                body: JSON.stringify({
+                    phone_number: formData.phone
+                })
+            })
+            const [otpResponseMail, otpResponsePhone] = await Promise.all([otpPromiseMail, otpPromisPhone]);
+            const otpMailJson = await otpResponseMail.json();
+            const otpPhoneJson = await otpResponsePhone.json();
+            console.log("JSON OTP Phone Response:", otpPhoneJson);
+            console.log("JSON OTP mail Response:", otpMailJson);
+            console.log("OTP Phone Response:", otpResponsePhone);
+            console.log("OTP mail Response:", otpResponseMail);
+
+
+            if (otpMailJson.message === "OTP sent successfully" && otpResponseMail.status === 200 && otpPhoneJson.message.includes("SMS sent successfully") && otpResponsePhone.status === 200) {
+                localStorage.setItem("user_data", formData);
+                router.push("verification");
+            }
+
+            else {
+                setErrors({ general: json_registerResponse.message });
+            }
+
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            setErrors({ general: "Something went wrong. Please try again." });
+        }
+    };
+
+
     return (
         <div
             className="rounded-lg bg-white p-6 shadow-4 dark:bg-surface-dark"
@@ -79,7 +118,7 @@ export default function Validation() {
                     </div>
                 )}                <div className="flex justify-between mb-6">
                     <div className="relative w-[48%]">
-                        <label htmlFor="firstName" className="block text-gray-700 font-medium">
+                        <label htmlFor="first_name" className="block text-gray-700 font-medium">
                             First Name
                         </label>
                         <input
@@ -87,17 +126,17 @@ export default function Validation() {
                             className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
                             id="exampleInput123"
                             aria-describedby="emailHelp123"
-                            name='firstName'
-                            value={formData.firstName}
+                            name='first_name'
+                            value={formData.first_name}
                             onChange={handleChange}
                         />
 
-                        {errors.firstName && <p className='text-red-500 text-sm mt-1'>{errors.firstName}</p>}
+                        {errors.first_name && <p className='text-red-500 text-sm mt-1'>{errors.first_name}</p>}
 
                     </div>
 
                     <div className="relative w-[48%]">
-                        <label htmlFor="lastName" className="block text-gray-700 font-medium">
+                        <label htmlFor="last_name" className="block text-gray-700 font-medium">
                             Last Name
                         </label>
                         <input
@@ -105,11 +144,11 @@ export default function Validation() {
                             className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
                             id="exampleInput123"
                             aria-describedby="emailHelp123"
-                            name='lastName'
-                            value={formData.lastName}
+                            name='last_name'
+                            value={formData.last_name}
                             onChange={handleChange}
                         />
-                        {errors.lastName && <p className='text-red-500 text-sm mt-1'>{errors.lastName}</p>}
+                        {errors.last_name && <p className='text-red-500 text-sm mt-1'>{errors.last_name}</p>}
 
                     </div>
 
@@ -129,6 +168,23 @@ export default function Validation() {
                         onChange={handleChange}
                     />
                     {errors.email && <p className='text-red-500 text-sm mt-1'>{errors.email}</p>}
+
+                </div>
+                <div className="relative mb-6" data-twe-input-wrapper-init>
+                    <label htmlFor="phone_number" className="block text-gray-700 font-medium">
+                        Phone Number
+                    </label>
+                    <input
+                        type="tel"
+                        pattern="^\+?\d{10,15}$"
+                        className="peer block w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                    />
+
+
+                    {errors.phone && <p className='text-red-500 text-sm mt-1'>{errors.phone}</p>}
 
                 </div>
 
@@ -167,17 +223,16 @@ export default function Validation() {
                     {errors.confirmPassword && <p className='text-red-500 text-sm mt-1'>{errors.confirmPassword}</p>}
 
                 </div>
-                <Link href="./verification">
-                    <button
-                        type="submit"
-                        className="inline-block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-                        data-twe-ripple-init
-                        data-twe-ripple-color="light"
-                        style={{ background: 'linear-gradient(to bottom, rgba(75, 2, 75, 0.655), rgba(213, 56, 213, 0.852))', color: 'white', padding: '20px', borderRadius: '30px' }}>
-                        Continue <span style={{ marginLeft: '10px' }}><i class="fa fa-arrow-right"></i></span>
-                    </button>
-                </Link>
-                
+
+
+                <button
+                    type="submit"
+                    className="inline-block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
+                    data-twe-ripple-init
+                    data-twe-ripple-color="light"
+                    style={{ background: 'linear-gradient(to bottom, rgba(75, 2, 75, 0.655), rgba(213, 56, 213, 0.852))', color: 'white', padding: '20px', borderRadius: '30px' }}>
+                    Continue <span style={{ marginLeft: '10px' }}><i class="fa fa-arrow-right"></i></span>
+                </button>
             </form>
         </div>
     )

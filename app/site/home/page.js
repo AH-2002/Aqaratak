@@ -5,7 +5,8 @@ import ScrollToUp from "./ScrollToUp";
 import Service from "./Service";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-export default function Home() {
+export default async function Home() {
+
     return (
         <>
             <Navbar />
