@@ -2,8 +2,9 @@ import { getUserToken } from "@/app/userRole/getUserToken";
 import { revalidatePath } from "next/cache";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import RentCard from "../Cards/RentCard";
+
 import AddPropertyButton from "./AddPropertButton";
+import RentCard from "../Cards/RentCard";
 
 export default async function RentPage() {
     const api_URL = "https://realestate.learnock.com/";
