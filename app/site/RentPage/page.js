@@ -4,7 +4,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 
 import AddPropertyButton from "./AddPropertButton";
-import RentCard from "@/app/site/Cards/RentCard";
+import RentCard from "@/app/site/Cards/RentCard1";
 
 export default async function RentPage() {
     const api_URL = "https://realestate.learnock.com/";
