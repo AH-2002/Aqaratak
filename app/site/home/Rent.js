@@ -1,6 +1,6 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Link from "next/link";
-import RentCard from "@/app/site/Cards/RentCard";
+import RentCard from "@/app/site/Cards/RentCard1";
 export default async function Rent() {
     const API_URL = "https://realestate.learnock.com/";
     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
