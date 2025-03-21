@@ -11,7 +11,7 @@ export default function FavoritesPage() {
     const [loading, setLoading] = useState(true);
     const [filterType, setFilterType] = useState("all"); // "all", "property", "service"
     const { profile } = useProfile();
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
 
     const userId = profile?.data?.id;
 
