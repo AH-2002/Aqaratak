@@ -1,1 +1,17 @@
 
+import { loginUser } from "@/app/auth/signin/ServerToken";
+
+export async function POST(req) {
+    try {
+        const { email, password } = await req.json();
+        const response = await loginUser({ email, password });
+
+        if (response.success) {
+            return new Response(JSON.stringify({ success: true }), { status: 200 });
+        } else {
+            return new Response(JSON.stringify({ success: false, error: response.error }), { status: 401 });
+        }
+    } catch (error) {
+        return new Response(JSON.stringify({ success: false, error: "Server error" }), { status: 500 });
+    }
+}
