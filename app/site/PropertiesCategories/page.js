@@ -10,7 +10,7 @@ export default async function PropertiesCategories() {
     const user = await UserRole();
 
     const api_URL = "https://realestate.learnock.com/";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     const token = await getUserToken();
 
     const response = await fetch(`${api_URL}api/properties/categories`, {
