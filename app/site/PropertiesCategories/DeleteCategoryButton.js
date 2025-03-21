@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 export default function DeleteCategoryButton({ type, categoryId }) {
     const api_URL = "https://realestate.learnock.com/";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     const router = useRouter();
 
     const handleDelete = async () => {
