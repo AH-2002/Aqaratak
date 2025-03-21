@@ -17,7 +17,7 @@ export default function ServiceDetails() {
             if (!id) return;
             console.log("Fetching service details for ID:", id);
 
-            const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+            const apiKey = 1234;
             const token = await getUserToken();
             const api_URL = `https://realestate.learnock.com/api/services/${id}`;
 
