@@ -12,7 +12,7 @@ export default function PostsPage() {
     const [editPostId, setEditPostId] = useState(null);
 
     const api_URL = "https://realestate.learnock.com/api/posts";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
 
     useEffect(() => {
         fetchPosts();
