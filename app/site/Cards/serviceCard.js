@@ -110,7 +110,7 @@ export default function ServiceCard({ service, refreshServices }) {
                     <span className="text-sm text-gray-500">/ {service.price_duration}</span>
                 </p>
                 <p className="text-sm text-gray-600 mt-2">{service.description}</p>
-
+            {!istenant &&(
                 <div className="flex justify-between mt-4">
                     <button onClick={() => setIsEditing(true)} className="bg-blue-500 text-white px-4 py-2 rounded">
                         Update
@@ -119,6 +119,8 @@ export default function ServiceCard({ service, refreshServices }) {
                         Delete
                     </button>
                 </div>
+            )
+            }
                 <div className="mt-2">
                     <FavoriteButton favoritableId={service.id} favoritableType="service" />
                 </div>
