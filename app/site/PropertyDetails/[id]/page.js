@@ -7,7 +7,7 @@ import Navbar from "../../Navbar";
 export default async function PropertyDetails({ params }) {
     const { id } = params;
     const API_URL = "https://realestate.learnock.com/";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     const token = await getUserToken();
 
     try {
