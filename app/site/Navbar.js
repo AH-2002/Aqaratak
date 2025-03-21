@@ -13,7 +13,7 @@ export default function Navbar() {
     const [userMenuOpen, setUserMenuOpen] = useState(false);
     const userMenuRef = useRef(null);
     const router = useRouter();
-
+console.log("profile",profile)
     const handleLogout = () => {
         localStorage.removeItem("userToken");
         Cookies.remove("userToken");
