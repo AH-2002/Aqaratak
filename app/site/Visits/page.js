@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
 const api_URL = "https://realestate.learnock.com/api/properties/property-visits/";
-const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+const apiKey = 1234;
 
 export default function VisitsPage() {
     const [visits, setVisits] = useState([]);
