@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function RefreshTokenButton() {
     const [expiresIn, setExpiresIn] = useState(null);
     const api_URL = "https://realestate.learnock.com/";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     const token = localStorage.getItem("userToken");
     const handleRefreshToken = async () => {
         try {
