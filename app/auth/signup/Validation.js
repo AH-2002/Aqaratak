@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export default function Validation() {
     const api_URL = "https://realestate.learnock.com/";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     let router = useRouter();
     let [formData, setFormData] = useState({
         first_name: "",
