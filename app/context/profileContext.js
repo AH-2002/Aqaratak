@@ -12,7 +12,7 @@ export const ProfileProvider = ({ children }) => {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
     const token = typeof window !== "undefined" ? localStorage.getItem("userToken") : null;
-    conosle.log(token)
+    console.log(token)
     const fetchProfile = async () => {
         try {
             setLoading(true);
