@@ -1,10 +1,12 @@
+"use client";
 import UserRole from "@/app/userRole/userRole";
 import Image from "next/image";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
+import { useProfile } from "@/app/context/profileContext";
 
 export default async function AdminProfile() {
-    const user = await UserRole();
+    const { profile } = useProfile();
 
     console.log("Admin Profile:", user);
 
@@ -17,7 +19,7 @@ export default async function AdminProfile() {
                 <div className="w-full max-w-lg bg-white shadow-lg rounded-lg p-8 text-center">
                     <h1 className="text-3xl font-bold text-gray-800">Profile Page</h1>
 
-                    {user && (user.data?.role === "admin"||user.data?.role === "tenant") ? (
+                    {user && (profile.data?.role === "admin"||profile.data?.role === "tenant") ? (
                         <>
                             {/* Profile Image */}
                             <div className="mt-6">
@@ -32,22 +34,22 @@ export default async function AdminProfile() {
 
                             {/* Name */}
                             <h2 className="text-2xl font-semibold mt-4 text-gray-900">
-                                {user.data.first_name} {user.data.last_name}
+                                {profile.data.first_name} {profile.data.last_name}
                             </h2>
 
                             {/* Email & Phone */}
-                            <p className="text-gray-600 mt-2">{user.data.email}</p>
-                            <p className="text-gray-600">{user.data.phone || "No Phone"}</p>
+                            <p className="text-gray-600 mt-2">{profile.data.email}</p>
+                            <p className="text-gray-600">{profile.data.phone || "No Phone"}</p>
 
                             {/* User Role */}
                             <p className="text-gray-700 font-medium mt-3 bg-gray-200 px-3 py-1 rounded-md inline-block">
-                                Role: {user.data.role}
+                                Role: {profile.data.role}
                             </p>
 
                             {/* Account Created & Updated Dates */}
                             <div className="mt-4 text-gray-500 text-sm">
-                                <p>Created at: {new Date(user.data.created_at).toLocaleString()}</p>
-                                <p>Last updated: {new Date(user.data.updated_at).toLocaleString()}</p>
+                                <p>Created at: {new Date(profile.data.created_at).toLocaleString()}</p>
+                                <p>Last updated: {new Date(profile.data.updated_at).toLocaleString()}</p>
                             </div>
                         </>
                     ) : (
