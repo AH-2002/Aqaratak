@@ -20,7 +20,8 @@ export default async function UserRole() {
             },
             cache: "no-store",
         });
-     const jsonResponse = await response.json();
+        console.log("token",token)
+        const jsonResponse = await response.json();
 
         console.log("uerProfileResponse",jsonResponse)
 
