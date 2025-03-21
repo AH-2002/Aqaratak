@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { setUserToken } from './serverToken';
 
 export default function SigninValidation() {
     const api_URL = "https://realestate.learnock.com/";
