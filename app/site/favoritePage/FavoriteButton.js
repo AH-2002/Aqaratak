@@ -6,7 +6,7 @@ import { useProfile } from "@/app/context/profileContext";
 export default function FavoriteButton({ favoritableId, favoritableType }) {
     const [isFavorite, setIsFavorite] = useState(false);
     const [loading, setLoading] = useState(false);
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     const { profile } = useProfile();
 
     // Ensure correct format
