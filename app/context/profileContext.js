@@ -10,7 +10,7 @@ export const ProfileProvider = ({ children }) => {
     const [error, setError] = useState(null);
 
     const api_URL = "https://realestate.learnock.com/";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     const token = typeof window !== "undefined" ? localStorage.getItem("userToken") : null;
 
     const fetchProfile = async () => {
