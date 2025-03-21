@@ -4,7 +4,7 @@ import { useState } from "react";
 import { getUserToken } from "@/app/userRole/getUserToken";
 
 export default function ServiceForm({ onSuccess, existingService = null }) {
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState({
         title_en: existingService?.title_en || "",
