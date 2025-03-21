@@ -8,7 +8,7 @@ export default function UpdateCategoryButton({ type, category }) {
     const [nameEn, setNameEn] = useState(category.name_en);
     const [nameAr, setNameAr] = useState(category.name_ar);
     const api_URL = "https://realestate.learnock.com/";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     const router = useRouter();
 
     // Define handleUpdate outside of the condition
