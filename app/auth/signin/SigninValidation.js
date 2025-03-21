@@ -60,7 +60,7 @@ export default function SigninValidation() {
                 const token = responseData.data;
                 localStorage.setItem("userToken", token);
                 startTokenRefresh();
-                await fetch("/api/auth/set-cookie", {
+                await fetch("./Post", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ token }),
@@ -89,7 +89,7 @@ export default function SigninValidation() {
                 const newAccessToken = responseData.access_token;
                 console.log("new access token", newAccessToken);
                 localStorage.setItem("userToken", newAccessToken);
-                await setUserToken(newAccessToken);
+                await Post(newAccessToken);
             } else {
                 console.error("Failed to refresh token");
             }
