@@ -14,7 +14,7 @@ export default function DeletePropertyButton({ propertyId, refreshProperties }) 
         setError(null);
 
         const api_URL = "https://realestate.learnock.com/";
-        const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+        const apiKey = 1234;
 
         try {
             const response = await fetch(`${api_URL}api/properties/${propertyId}`, {
