@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function UserActions({ profile }) {
     const api_URL = "https://realestate.learnock.com/";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     const [token, setToken] = useState("");
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
