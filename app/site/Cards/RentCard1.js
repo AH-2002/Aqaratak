@@ -7,6 +7,8 @@ import FavoriteButton from "../favoritePage/FavoriteButton";
 import DeletePropertyButton from "../RentPage/DeletePropertyButton";
 import UpdatePropertyButton from "../RentPage/UpdatePropertyButton";
 export default function RentCard({ property, refreshProperties }) {
+    const user = await UserRole();
+    const isTenant = user?.data?.role === "tenant";
 
     return (
 
@@ -29,10 +31,12 @@ export default function RentCard({ property, refreshProperties }) {
                     <p><i className="fa-solid fa-arrows-left-right-to-line"></i> {property.land_space} M</p>
                     <p><i className="fa-solid fa-location-dot"></i> {property.location}</p>
                 </div>
+            {!istenant && (
                 <div className="flex justify-between mt-4">
                     <UpdatePropertyButton property={property} refreshProperties={refreshProperties} />
                     <DeletePropertyButton propertyId={property.id} refreshProperties={refreshProperties} />
                 </div>
+            )}
                 <div className="w-full mt-4">
                     <FavoriteButton favoritableId={property.id} favoritableType="property" />
                 </div>
