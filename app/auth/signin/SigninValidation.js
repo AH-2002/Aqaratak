@@ -60,6 +60,7 @@ export default function SigninValidation() {
             if (response.status === 200) {
                 const token = responseData.data;
                 localStorage.setItem("userToken", token);
+                console.log(token)
                 startTokenRefresh();
                 await setUserToken(token);
                 router.push("/site/home");
