@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function AddUserForm({ onClose, onUserAdded }) {
     const api_URL = "https://realestate.learnock.com/";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     const [token, setToken] = useState("");
 
     // Default image from public folder
