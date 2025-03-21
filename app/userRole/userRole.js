@@ -20,6 +20,9 @@ export default async function UserRole() {
             },
             cache: "no-store",
         });
+     const jsonResponse = await response.json();
+
+        console.log("uerProfileResponse",jsonResponse)
 
         if (!response.ok) throw new Error("Failed to fetch user profile");
 
