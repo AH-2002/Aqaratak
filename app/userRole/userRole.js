@@ -2,7 +2,7 @@ import { getUserToken } from "./getUserToken";
 
 export default async function UserRole() {
     const api_URL = "https://realestate.learnock.com/";
-    const apiKey = "1234";
+    const apiKey = 1234;
 
     // Await the token retrieval properly
     const token = await getUserToken();
