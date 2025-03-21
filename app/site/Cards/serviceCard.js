@@ -20,7 +20,7 @@ export default function ServiceCard({ service, refreshServices }) {
         category_id: 1,
     });
 
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
 
     // Handle input changes
     const handleChange = (e) => {
