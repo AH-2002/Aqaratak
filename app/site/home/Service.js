@@ -3,7 +3,7 @@ import ServiceCard from "../Cards/serviceCard";
 import { getUserToken } from "@/app/userRole/getUserToken";
 export default async function Service() {
     const api_URL = "https://realestate.learnock.com/";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     const token = await getUserToken();
 
     let services = [];
