@@ -7,7 +7,7 @@ import AddUserForm from "./AddUserForm";
 
 export default function GetAllUsers() {
     const api_URL = "https://realestate.learnock.com/";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
 
     const [users, setUsers] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
