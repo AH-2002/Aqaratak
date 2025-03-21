@@ -60,11 +60,7 @@ export default function SigninValidation() {
                 const token = responseData.data;
                 localStorage.setItem("userToken", token);
                 startTokenRefresh();
-                await fetch("./Post", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ token }),
-            });                router.push("/site/home");
+                router.push("/site/home");
             }
         } catch (error) {
             console.error("Error submitting form:", error);
