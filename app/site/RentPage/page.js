@@ -8,7 +8,7 @@ import RentCard from "@/app/site/Cards/RentCard1";
 
 export default async function RentPage() {
     const api_URL = "https://realestate.learnock.com/";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    const apiKey = 1234;
     const token = await getUserToken();
 
     let properties = [];
