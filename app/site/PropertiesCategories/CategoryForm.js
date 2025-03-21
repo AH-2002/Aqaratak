@@ -15,7 +15,7 @@ export default function CategoryForm({ type, onClose }) {
 
         try {
             const api_URL = "https://realestate.learnock.com/";
-            const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+            const apiKey = 1234;
             const token = await getUserToken();
 
             const endpoint = type === "types" ? `${api_URL}api/${type}` : `${api_URL}api/${type}/categories`;
