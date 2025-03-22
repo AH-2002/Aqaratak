@@ -3,10 +3,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import FavoriteButton from "../favoritePage/FavoriteButton";
+import { useProfile } from "@/app/context/profileContext";
+
 export default function ServiceCard({ service, refreshServices }) {
     const [isEditing, setIsEditing] = useState(false);
     const router = useRouter(); // Initialize router
-
+    const { profile } = useProfile();
+    const isTenant = profile?.data?.role === "tenant";
     const [formData, setFormData] = useState({
         title_en: service.title,
         description_en: service.description,
@@ -62,7 +65,7 @@ export default function ServiceCard({ service, refreshServices }) {
     };
 
     const handleUpdate = async () => {
-        const token = await getUserToken();
+        const token = localStorage.getItem("userToken");
         const api_URL = `https://realestate.learnock.com/api/services/${service.id}`;
 
         try {
@@ -109,7 +112,7 @@ export default function ServiceCard({ service, refreshServices }) {
                     <span className="text-sm text-gray-500">/ {service.price_duration}</span>
                 </p>
                 <p className="text-sm text-gray-600 mt-2">{service.description}</p>
-            {!istenant &&(
+            {!isTenant &&(
                 <div className="flex justify-between mt-4">
                     <button onClick={() => setIsEditing(true)} className="bg-blue-500 text-white px-4 py-2 rounded">
                         Update

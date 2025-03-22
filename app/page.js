@@ -1,7 +1,7 @@
 "use client"
 import { redirect } from "next/navigation";
 
-export default async function Page() {
+export default function Page() {
   const token = localStorage.getItem("userToken");
   if (token) {
     try {      

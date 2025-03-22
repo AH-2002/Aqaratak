@@ -1,14 +1,13 @@
 "use client";
 
+import { useProfile } from "@/app/context/profileContext";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Image from "next/image";
 import Link from "next/link";
 import FavoriteButton from "../favoritePage/FavoriteButton";
 import DeletePropertyButton from "../RentPage/DeletePropertyButton";
-import UpdatePropertyButton from "../RentPage/UpdatePropertyButton";
-import { useProfile } from "@/app/context/profileContext";
-
-export default async function RentCard({ property, refreshProperties }) {
+import UpdatePropertyButton from "../RentPage/UpdatePropertyButton"
+export default function RentCard({ property, refreshProperties }) {
     const { profile } = useProfile();
     const isTenant = profile?.data?.role === "tenant";
 
@@ -33,7 +32,7 @@ export default async function RentCard({ property, refreshProperties }) {
                     <p><i className="fa-solid fa-arrows-left-right-to-line"></i> {property.land_space} M</p>
                     <p><i className="fa-solid fa-location-dot"></i> {property.location}</p>
                 </div>
-            {!istenant && (
+            {!isTenant && (
                 <div className="flex justify-between mt-4">
                     <UpdatePropertyButton property={property} refreshProperties={refreshProperties} />
                     <DeletePropertyButton propertyId={property.id} refreshProperties={refreshProperties} />

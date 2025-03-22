@@ -1,14 +1,12 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function UpdateCategoryButton({ type, category }) {
     const [isEditing, setIsEditing] = useState(false);
-    const [nameEn, setNameEn] = useState(category.name_en);
-    const [nameAr, setNameAr] = useState(category.name_ar);
+    const [nameEn, setNameEn] = useState(category.name_en || "");
+    const [nameAr, setNameAr] = useState(category.name_ar || "");
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const router = useRouter();
 
     // Define handleUpdate outside of the condition
     const handleUpdate = async (e) => {
@@ -19,24 +17,33 @@ export default function UpdateCategoryButton({ type, category }) {
             ? `${api_URL}api/${type}/${category.id}`
             : `${api_URL}api/${type}/categories/${category.id}`;
 
-        const response = await fetch(endpoint, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "apiKey": apiKey,
-                "Authorization": `Bearer ${token}`,
-            },
-            body: JSON.stringify({ name_en: nameEn, name_ar: nameAr }),
-        });
+        const payload = { name_en: nameEn, name_ar: nameAr };
+        console.log("Sending update request:", payload);
 
-        if (response.ok) {
+        try {
+            const response = await fetch(endpoint, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "apiKey": apiKey,
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(payload),
+            });
+
+            const responseData = await response.json();
+            console.log("Response Data:", responseData);
+
+            if (!response.ok) throw new Error(responseData.message || "Failed to update category");
+
             alert("Category updated successfully");
             setIsEditing(false);
-            router.refresh(); // Reload server component
-        } else {
-            alert("Failed to update category");
+            window.location.reload();
+        } catch (error) {
+            alert("Error updating category: " + error.message);
         }
     };
+
 
     return (
         <>

@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Aqar1 - Find Your Perfect Home",
+  title: "Aqaratak",
   description: "Discover and explore the best real estate options with Aqar1",
 };
 

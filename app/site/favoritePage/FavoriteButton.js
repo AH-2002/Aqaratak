@@ -48,7 +48,7 @@ export default function FavoriteButton({ favoritableId, favoritableType }) {
 
     const toggleFavorite = async () => {
         setLoading(true);
-        const token = await getUserToken();
+        const token = localStorage.getItem("userToken");
         const url = isFavorite
             ? "https://realestate.learnock.com/api/favorites/delete"
             : "https://realestate.learnock.com/api/favorites/add";

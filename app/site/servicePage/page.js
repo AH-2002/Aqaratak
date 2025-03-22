@@ -1,41 +1,54 @@
-"use client"
+"use client";
 import ServiceCard from "../Cards/serviceCard";
 import ServiceForm from "./ServiceForm";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import { revalidatePath } from "next/cache";
+import { useEffect, useState } from "react";
 
-export default async function ServicePage() {
+export default function ServicePage() {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token = localStorage.getItem("userToken");
+    
+    const [token, setToken] = useState(null);
+    const [services, setServices] = useState([]);
+    const [error, setErrors] = useState(null);
+    const [refreshTrigger, setRefreshTrigger] = useState(0); // New state to trigger refresh
 
-    let services = [];
-    let error = null;
+    useEffect(() => {
+        setToken(localStorage.getItem("userToken"));
+    }, []);
 
-    try {
-        const response = await fetch(`${api_URL}api/services`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "apiKey": apiKey,
-                "Authorization": `Bearer ${token}`,
-            },
-            cache: "no-store",
-        });
+    useEffect(() => {
+        if (!token) return; // Wait until token is set
 
-        if (!response.ok) throw new Error("Failed to fetch services");
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`${api_URL}api/services`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "apiKey": apiKey,
+                        "Authorization": `Bearer ${token}`,
+                    },
+                    cache: "no-store",
+                });
 
-        const parsedResponse = await response.json();
-        services = parsedResponse?.data || [];
-    } catch (err) {
-        console.error("Error fetching services:", err);
-        error = err.message;
-    }
+                if (!response.ok) throw new Error("Failed to fetch services");
 
-    const refreshServices = async () => {
-        revalidatePath("/services");
+                const parsedResponse = await response.json();
+                setServices(parsedResponse?.data || []);
+            } catch (err) {
+                console.error("Error fetching services:", err);
+                setErrors(err.message);
+            }
+        };
+        fetchData();
+    }, [token, refreshTrigger]); // Refresh when refreshTrigger changes
+
+    // Function to manually trigger a refresh
+    const refreshServices = () => {
+        setRefreshTrigger(prev => prev + 1); // Increment trigger state to cause re-fetch
     };
 
     return (
@@ -44,7 +57,7 @@ export default async function ServicePage() {
             <section className="py-12 px-6 max-w-6xl mx-auto">
                 <div className="flex justify-between items-center mb-6">
                     <h1 className="text-3xl font-bold">Explore Our Apartments for Service</h1>
-                    <ServiceForm onSuccess={refreshServices} />
+                    <ServiceForm onSuccess={refreshServices} /> {/* Trigger refresh after adding */}
                 </div>
 
                 {error ? (

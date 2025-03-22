@@ -47,7 +47,7 @@ export default function FavoritesPage() {
     };
 
     const removeFavorite = async (favoritableId, favoritableType) => {
-        const token = await getUserToken();
+        const token = localStorage.getItem("userToken");
 
         // Ensure correct format for favoritable_type
         const formattedType = favoritableType.toLowerCase() === "app\\models\\property" ? "property" : "service";

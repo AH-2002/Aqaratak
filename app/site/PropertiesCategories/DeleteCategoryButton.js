@@ -4,14 +4,13 @@ import { useRouter } from "next/navigation";
 export default function DeleteCategoryButton({ type, categoryId }) {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const router = useRouter();
 
     const handleDelete = async () => {
         if (!confirm("Are you sure you want to delete this category?")) return;
 
         const token = localStorage.getItem("userToken");
-        const endpoint = type === "types" 
-            ? `${api_URL}api/${type}/${categoryId}` 
+        const endpoint = type === "types"
+            ? `${api_URL}api/${type}/${categoryId}`
             : `${api_URL}api/${type}/categories/${categoryId}`;
 
         const response = await fetch(endpoint, {
@@ -25,7 +24,7 @@ export default function DeleteCategoryButton({ type, categoryId }) {
 
         if (response.ok) {
             alert("Category deleted successfully");
-            router.refresh(); // Reload server component
+            window.location.reload();
         } else {
             alert("Failed to delete category");
         }

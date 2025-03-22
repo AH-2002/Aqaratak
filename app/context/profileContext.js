@@ -12,38 +12,42 @@ export const ProfileProvider = ({ children }) => {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
     const token = typeof window !== "undefined" ? localStorage.getItem("userToken") : null;
-    console.log(token)
-    const fetchProfile = async () => {
-        try {
-            setLoading(true);
-            const response = await fetch(`${api_URL}api/user/profile`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                    "apiKey": apiKey,
-                    "Authorization": `Bearer ${token}`,
-                },
-            });
-
-            if (!response.ok) throw new Error("Failed to fetch profile");
-
-            const data = await response.json();
-            console.log("profile data",data);
-            setProfile(data);
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     useEffect(() => {
-        if (token) fetchProfile();
+        if (!token) {
+            setLoading(false);
+            return;
+        }
+
+        const fetchProfile = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch(`${api_URL}api/user/profile`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "apiKey": apiKey,
+                        "Authorization": `Bearer ${token}`,
+                    },
+                });
+
+                if (!response.ok) throw new Error("Failed to fetch profile");
+
+                const data = await response.json();
+                setProfile(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProfile();
     }, [token]);
 
     return (
-        <ProfileContext.Provider value={{ profile, loading, error, refreshProfile: fetchProfile }}>
+        <ProfileContext.Provider value={{ profile, loading, error }}>
             {children}
         </ProfileContext.Provider>
     );

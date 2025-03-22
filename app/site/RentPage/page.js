@@ -5,35 +5,41 @@ import Footer from "../Footer";
 
 import AddPropertyButton from "./AddPropertButton";
 import RentCard from "@/app/site/Cards/RentCard1";
+import { useEffect, useState } from "react";
 
-export default async function RentPage() {
+export default function RentPage() {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token =localStorage.getItem("userToken");
+    const token = localStorage.getItem("userToken");
 
-    let properties = [];
-    let error = null;
+    let [properties, setProperties] = useState([]);
+    let [error, setError] = useState(null);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`${api_URL}api/properties`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "apiKey": apiKey,
+                        "Authorization": `Bearer ${token}`,
+                    },
+                    cache: "no-store", // Ensures fresh data every time
+                });
 
-    try {
-        const response = await fetch(`${api_URL}api/properties`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "apiKey": apiKey,
-                "Authorization": `Bearer ${token}`,
-            },
-            cache: "no-store", // Ensures fresh data every time
-        });
+                if (!response.ok) throw new Error("Failed to fetch properties");
 
-        if (!response.ok) throw new Error("Failed to fetch properties");
+                const parsedResponse = await response.json();
+                setProperties(parsedResponse?.data || []);
+            } catch (err) {
+                console.error("Error fetching properties:", err);
+                setError(err.message);
+            }
+        }
+        fetchData();
+    }, [])
 
-        const parsedResponse = await response.json();
-        properties = parsedResponse?.data || [];
-    } catch (err) {
-        console.error("Error fetching properties:", err);
-        error = err.message;
-    }
 
     // Function to refresh properties list
     const refreshProperties = async () => {
