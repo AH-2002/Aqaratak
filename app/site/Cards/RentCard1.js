@@ -14,6 +14,7 @@ export default function RentCard({ property, refreshProperties }) {
     useEffect(() => {
         if (typeof window !== "undefined") {
             setToken(localStorage.getItem("userToken"));
+            console.log("cardToken",token)
         }
     }, []);
 

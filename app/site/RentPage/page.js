@@ -20,6 +20,8 @@ export default function RentPage() {
     useEffect(() => {
         if (typeof window !== "undefined") {
             setToken(localStorage.getItem("userToken"));
+            console.log("Stored token:", token); // Add this log to check the value
+
         }
     }, []);
 
