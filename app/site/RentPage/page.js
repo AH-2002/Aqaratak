@@ -37,7 +37,6 @@ export default async function RentPage() {
 
     // Function to refresh properties list
     const refreshProperties = async () => {
-        "use server";
         revalidatePath("/properties");
     };
 
