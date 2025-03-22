@@ -8,7 +8,7 @@ import { useProfile } from "@/app/context/profileContext";
 export default async function AdminProfile() {
     const { profile } = useProfile();
 
-    console.log("Admin Profile:", user);
+    console.log("Admin Profile:", profile);
 
     return (
         <>
@@ -19,7 +19,7 @@ export default async function AdminProfile() {
                 <div className="w-full max-w-lg bg-white shadow-lg rounded-lg p-8 text-center">
                     <h1 className="text-3xl font-bold text-gray-800">Profile Page</h1>
 
-                    {user && (profile.data?.role === "admin"||profile.data?.role === "tenant") ? (
+                    {profile && (profile.data?.role === "admin"||profile.data?.role === "tenant") ? (
                         <>
                             {/* Profile Image */}
                             <div className="mt-6">
