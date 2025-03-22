@@ -6,9 +6,11 @@ import Link from "next/link";
 import FavoriteButton from "../favoritePage/FavoriteButton";
 import DeletePropertyButton from "../RentPage/DeletePropertyButton";
 import UpdatePropertyButton from "../RentPage/UpdatePropertyButton";
+import { useProfile } from "@/app/context/profileContext";
+
 export default async function RentCard({ property, refreshProperties }) {
-    const user = await UserRole();
-    const isTenant = user?.data?.role === "tenant";
+    const { profile } = useProfile();
+    const isTenant = profile?.data?.role === "tenant";
 
     return (
 
