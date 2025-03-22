@@ -1,7 +1,7 @@
 "use client";
 
 import { useProfile } from "@/app/context/profileContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ServiceForm({ onSuccess, existingService = null }) {
     const [token, setToken] = useState(null);
