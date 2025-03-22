@@ -1,8 +1,12 @@
 "use client";
 
+import { useProfile } from "@/app/context/profileContext";
 import { useState } from "react";
 
 export default function ServiceForm({ onSuccess, existingService = null }) {
+    const token = localStorage.getItem("userToken");
+    const {profile} = useProfile();
+    const isTenant = profile?.data?.role === "tenant";
     const apiKey = 1234;
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState({
@@ -33,7 +37,6 @@ export default function ServiceForm({ onSuccess, existingService = null }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = localStorage.getItem("userToken");
         const api_URL = existingService
             ? `https://realestate.learnock.com/api/services/${existingService.id}`
             : "https://realestate.learnock.com/api/services";
@@ -67,13 +70,15 @@ export default function ServiceForm({ onSuccess, existingService = null }) {
     return (
         <div className="relative">
             {/* Button to Open Form */}
-            <button 
+            {token && !isTenant?
+            (<button 
                 onClick={() => setIsOpen(!isOpen)} 
                 className={`fixed top-1/2 left-4 transform -translate-y-1/2 transition-all duration-300 
                 ${isOpen ? "translate-x-[-80px]" : ""} bg-blue-500 text-white px-4 py-2 rounded`}
             >
                 {isOpen ? "Close" : "Open Form"}
-            </button>
+            </button>):null
+}
 
             {/* Sliding Form */}
             <div 

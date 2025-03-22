@@ -6,11 +6,14 @@ import Footer from "../Footer";
 import AddPropertyButton from "./AddPropertButton";
 import RentCard from "@/app/site/Cards/RentCard1";
 import { useEffect, useState } from "react";
+import { useProfile } from "@/app/context/profileContext";
 
 export default function RentPage() {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
     const token = localStorage.getItem("userToken");
+    const { profile } = useProfile();
+    const isTenant = profile?.data?.role === "tenant";
 
     let [properties, setProperties] = useState([]);
     let [error, setError] = useState(null);
@@ -52,7 +55,10 @@ export default function RentPage() {
             <section className="py-12 px-6 max-w-6xl mx-auto">
                 <div className="flex justify-between items-center mb-6">
                     <h1 className="text-3xl font-bold">Explore Our Apartments for Rent</h1>
-                    <AddPropertyButton refreshProperties={refreshProperties} />
+                    {token && !isTenant?(
+                        <AddPropertyButton refreshProperties={refreshProperties} />
+                    ):null
+                    }
                 </div>
 
                 {error ? (

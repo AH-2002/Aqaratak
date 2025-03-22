@@ -10,7 +10,7 @@ import UpdatePropertyButton from "../RentPage/UpdatePropertyButton"
 export default function RentCard({ property, refreshProperties }) {
     const { profile } = useProfile();
     const isTenant = profile?.data?.role === "tenant";
-
+    const token = localStorage.getItem("userToken");
     return (
 
         <div className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-200">
@@ -32,16 +32,19 @@ export default function RentCard({ property, refreshProperties }) {
                     <p><i className="fa-solid fa-arrows-left-right-to-line"></i> {property.land_space} M</p>
                     <p><i className="fa-solid fa-location-dot"></i> {property.location}</p>
                 </div>
-            {!isTenant && (
-                <div className="flex justify-between mt-4">
-                    <UpdatePropertyButton property={property} refreshProperties={refreshProperties} />
-                    <DeletePropertyButton propertyId={property.id} refreshProperties={refreshProperties} />
-                </div>
-            )}
-                <div className="w-full mt-4">
-                    <FavoriteButton favoritableId={property.id} favoritableType="property" />
-                </div>
+                {token && !isTenant && (
+                    <div className="flex justify-between mt-4">
+                        <UpdatePropertyButton property={property} refreshProperties={refreshProperties} />
+                        <DeletePropertyButton propertyId={property.id} refreshProperties={refreshProperties} />
+                    </div>
+                )}
+                {token ? (
+                    <div className="w-full mt-4">
+                        <FavoriteButton favoritableId={property.id} favoritableType="property" />
+                    </div>) : null
+                }
             </div>
+
         </div>
     );
 }

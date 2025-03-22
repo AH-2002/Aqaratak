@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import Brands from "./Brands";
 import Rent from "./Rent";
@@ -5,8 +6,8 @@ import ScrollToUp from "./ScrollToUp";
 import Service from "./Service";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-export default async function Home() {
-
+export default function Home() {
+    const token = localStorage.getItem("userToken");
     return (
         <>
             <Navbar />
@@ -102,7 +103,7 @@ export default async function Home() {
                 </main>
                 <Brands />
                 <Rent />
-                <Service />
+                {token ? <Service /> : null}
                 <ScrollToUp />
             </section>
             <Footer />

@@ -5,18 +5,17 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { useProfile } from "../context/profileContext";
-import Cookies from "js-cookie";
 
 export default function Navbar() {
     const { profile } = useProfile();
     const [menuOpen, setMenuOpen] = useState(false);
     const [userMenuOpen, setUserMenuOpen] = useState(false);
     const userMenuRef = useRef(null);
+    const token = localStorage.getItem("userToken");
     const router = useRouter();
-    console.log("profile",profile)
+    console.log("profile", profile)
     const handleLogout = () => {
         localStorage.removeItem("userToken");
-        Cookies.remove("userToken");
         router.push("/auth/signin");
     };
 
@@ -46,8 +45,12 @@ export default function Navbar() {
                     <div className="hidden md:flex space-x-10">
                         <Link href="/site/home"><button>Home</button></Link>
                         <Link href="/site/RentPage"><button>Rent</button></Link>
-                        <Link href="/site/servicePage"><button>Services</button></Link>
-                        <Link href="/site/favoritePage"><button>Favourite</button></Link>
+                        {token ? (
+                            <>
+                                <Link href="/site/servicePage"><button>Services</button></Link>
+                                <Link href="/site/favoritePage"><button>Favourite</button></Link>
+                            </>
+                        ) : null}
                     </div>
                 </div>
 
