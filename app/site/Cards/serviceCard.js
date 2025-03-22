@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { getUserToken } from "@/app/userRole/getUserToken";
 import FavoriteButton from "../favoritePage/FavoriteButton";
 export default function ServiceCard({ service, refreshServices }) {
     const [isEditing, setIsEditing] = useState(false);
@@ -33,7 +32,7 @@ export default function ServiceCard({ service, refreshServices }) {
     };
 
     const handleDelete = async () => {
-        const token = await getUserToken();
+        const token = localStorage.getItem("userToken");
         const api_URL = `https://realestate.learnock.com/api/services/${service.id}`;
 
         try {
