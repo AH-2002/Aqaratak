@@ -10,23 +10,31 @@ export const ProfileProvider = ({ children }) => {
     const [error, setError] = useState(null);
     const [token, setToken] = useState(null);
     const hasFetched = useRef(false);
-    
+
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
 
+    // Load token from localStorage only on the client
     useEffect(() => {
         if (typeof window !== "undefined") {
-            setToken(localStorage.getItem("userToken"));
+            const storedToken = localStorage.getItem("userToken");
+            if (storedToken) {
+                setToken(storedToken);
+            } else {
+                setLoading(false); // No token, stop loading
+            }
         }
     }, []);
 
+    // Fetch user profile
     useEffect(() => {
-        if (!token || hasFetched.current) {
-            setLoading(false);
-            return;
-        }
+        if (!token) return;
+
+        hasFetched.current = false; // Reset fetch blocker when token updates
 
         const fetchProfile = async () => {
+            if (hasFetched.current) return; // Skip redundant fetch
+
             try {
                 setLoading(true);
                 const response = await fetch(`${api_URL}api/user/profile`, {
@@ -43,7 +51,7 @@ export const ProfileProvider = ({ children }) => {
 
                 const data = await response.json();
                 setProfile(data);
-                hasFetched.current = true; // Prevent unnecessary re-fetching
+                hasFetched.current = true;
             } catch (err) {
                 setError(err.message);
             } finally {
