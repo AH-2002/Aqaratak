@@ -1,6 +1,5 @@
 "use client"
 import { useState } from "react";
-import { getUserToken } from "@/app/userRole/getUserToken";
 
 export default function CategoryForm({ type, onClose }) {
     const [nameEn, setNameEn] = useState("");
@@ -16,7 +15,7 @@ export default function CategoryForm({ type, onClose }) {
         try {
             const api_URL = "https://realestate.learnock.com/";
             const apiKey = 1234;
-            const token = await getUserToken();
+            const token =localStorage.getItem("userToken");
 
             const endpoint = type === "types" ? `${api_URL}api/${type}` : `${api_URL}api/${type}/categories`;
 
