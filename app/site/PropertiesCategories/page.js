@@ -1,17 +1,16 @@
-import { getUserToken } from "@/app/userRole/getUserToken";
-import UserRole from "@/app/userRole/userRole";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
 import AddCategoryButton from "./AddCategoryButtond";
 import DeleteCategoryButton from "./DeleteCategoryButton";
 import UpdateCategoryButton from "./UpdateCategoryButton";
+import { useProfile } from "@/app/context/profileContext";
 
 export default async function PropertiesCategories() {
-    const user = await UserRole();
+    const { profile } = useProfile();
 
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token = await getUserToken();
+    const token = localStorage.getItem("userToken");
 
     const response = await fetch(`${api_URL}api/properties/categories`, {
         method: "GET",
@@ -25,9 +24,9 @@ export default async function PropertiesCategories() {
 
     const ParsedResponse = await response.json();
     console.log("Parsed response categories", ParsedResponse);
-    console.log("user", user);
+    console.log("user", profile);
     const categories = ParsedResponse?.data || []; // Handle undefined case
-    const isTenant = user?.data?.role === "tenant";
+    const isTenant = profile?.data?.role === "tenant";
 
     return (
         <div>
