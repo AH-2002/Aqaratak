@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import ServiceCard from "../Cards/serviceCard";
 export default async function Service() {
