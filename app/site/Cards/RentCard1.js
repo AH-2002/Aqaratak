@@ -6,7 +6,7 @@ import Link from "next/link";
 import FavoriteButton from "../favoritePage/FavoriteButton";
 import DeletePropertyButton from "../RentPage/DeletePropertyButton";
 import UpdatePropertyButton from "../RentPage/UpdatePropertyButton";
-export default function RentCard({ property, refreshProperties }) {
+export default async function RentCard({ property, refreshProperties }) {
     const user = await UserRole();
     const isTenant = user?.data?.role === "tenant";
 
