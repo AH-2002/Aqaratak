@@ -1,5 +1,4 @@
 "use client";
-
 import { useProfile } from "@/app/context/profileContext";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Image from "next/image";
@@ -7,14 +6,17 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import FavoriteButton from "../favoritePage/FavoriteButton";
 import DeletePropertyButton from "../RentPage/DeletePropertyButton";
-import UpdatePropertyButton from "../RentPage/UpdatePropertyButton"
+import UpdatePropertyButton from "../RentPage/UpdatePropertyButton";
+
 export default function RentCard({ property, refreshProperties }) {
     const { profile, loading } = useProfile(); // Extract loading state as well
     const [token, setToken] = useState(null);
+
     useEffect(() => {
         if (typeof window !== "undefined") {
-            setToken(localStorage.getItem("userToken"));
-            console.log("cardToken",token)
+            const storedToken = localStorage.getItem("userToken");
+            setToken(storedToken);
+            console.log("cardToken", storedToken);  // Logging stored token
         }
     }, []);
 
@@ -25,10 +27,8 @@ export default function RentCard({ property, refreshProperties }) {
 
     const isTenant = profile?.data?.role === "tenant";
     return (
-
         <div className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-200">
             <Link href={`/site/PropertyDetails/${property.id}`}>
-
                 <div className="relative w-full h-56">
                     <Image src={property.image || "/user.jpg"} alt={property.title} layout="fill" objectFit="cover" />
                 </div>
@@ -54,10 +54,9 @@ export default function RentCard({ property, refreshProperties }) {
                 {token ? (
                     <div className="w-full mt-4">
                         <FavoriteButton favoritableId={property.id} favoritableType="property" />
-                    </div>) : null
-                }
+                    </div>
+                ) : null}
             </div>
-
         </div>
     );
 }

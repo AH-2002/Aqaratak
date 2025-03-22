@@ -16,16 +16,19 @@ export default function RentPage() {
 
     const [properties, setProperties] = useState([]);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);  // Loading state for fetching properties
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            setToken(localStorage.getItem("userToken"));
-            console.log("Stored token:", token); // Add this log to check the value
-
+            const storedToken = localStorage.getItem("userToken");
+            setToken(storedToken);
+            console.log("Stored token:", storedToken);  // Logging stored token
         }
     }, []);
 
     useEffect(() => {
+        if (!token) return;  // Wait for token to be available
+
         const fetchData = async () => {
             try {
                 const response = await fetch(`${api_URL}api/properties`, {
@@ -46,8 +49,11 @@ export default function RentPage() {
             } catch (err) {
                 console.error("Error fetching properties:", err);
                 setError(err.message);
+            } finally {
+                setLoading(false);  // Stop loading after fetching is complete
             }
         };
+
         fetchData();
     }, [token]);
 
@@ -67,7 +73,9 @@ export default function RentPage() {
                     ) : null}
                 </div>
 
-                {error ? (
+                {loading ? (
+                    <p className="text-center">Loading properties...</p>
+                ) : error ? (
                     <p className="text-red-500 text-center">{error}</p>
                 ) : properties.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
