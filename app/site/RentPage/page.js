@@ -1,4 +1,4 @@
-import { getUserToken } from "@/app/userRole/getUserToken";
+"use client"
 import { revalidatePath } from "next/cache";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
@@ -9,7 +9,7 @@ import RentCard from "@/app/site/Cards/RentCard1";
 export default async function RentPage() {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token = await getUserToken();
+    const token =localStorage.getItem("userToken");
 
     let properties = [];
     let error = null;
