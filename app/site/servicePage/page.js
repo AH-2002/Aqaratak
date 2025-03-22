@@ -35,7 +35,6 @@ export default async function ServicePage() {
     }
 
     const refreshServices = async () => {
-        "use server";
         revalidatePath("/services");
     };
 
