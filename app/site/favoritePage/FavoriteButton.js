@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getUserToken } from "@/app/userRole/getUserToken";
 import { useProfile } from "@/app/context/profileContext";
 
 export default function FavoriteButton({ favoritableId, favoritableType }) {
@@ -21,7 +20,7 @@ export default function FavoriteButton({ favoritableId, favoritableType }) {
     const checkFavoriteStatus = async () => {
         if (!profile?.data?.id) return; // ✅ Avoid running if user ID is missing
 
-        const token = await getUserToken();
+        const token =localStorage.getItem("userToken");
         try {
             const response = await fetch(`https://realestate.learnock.com/api/favorites/${profile.data.id}`, {
                 method: "GET",
