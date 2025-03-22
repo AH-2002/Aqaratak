@@ -1,8 +1,8 @@
+"use client"
 import { redirect } from "next/navigation";
-import { getUserToken } from "./userRole/getUserToken";
 
 export default async function Page() {
-  const token = await getUserToken();
+  const token = localStorage.getItem("userToken");
   if (token) {
     try {      
       redirect("/site/home");
