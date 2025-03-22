@@ -1,4 +1,5 @@
 "use client";
+
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import { useEffect, useState, useRef } from "react";
 import { useProfile } from "../context/profileContext";
 
 export default function Navbar() {
-    const { profile } = useProfile();
+    const { profile, loading, error } = useProfile();  // Destructure loading and error from context
     const [menuOpen, setMenuOpen] = useState(false);
     const [userMenuOpen, setUserMenuOpen] = useState(false);
     const userMenuRef = useRef(null);
@@ -18,8 +19,9 @@ export default function Navbar() {
             setToken(localStorage.getItem("userToken"));
         }
     }, []);
+
     const router = useRouter();
-    console.log("profile", profile)
+
     const handleLogout = () => {
         localStorage.removeItem("userToken");
         router.push("/auth/signin");
@@ -37,6 +39,16 @@ export default function Navbar() {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
+
+    // If loading, show loading spinner or message
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    // If there is an error in fetching profile
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <nav className="bg-transparent px-2 text-center">
