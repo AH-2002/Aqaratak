@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { getUserToken } from "@/app/userRole/getUserToken";
 
 export default function ServiceForm({ onSuccess, existingService = null }) {
     const apiKey = 1234;
@@ -34,7 +33,7 @@ export default function ServiceForm({ onSuccess, existingService = null }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = await getUserToken();
+        const token = localStorage.getItem("userToken");
         const api_URL = existingService
             ? `https://realestate.learnock.com/api/services/${existingService.id}`
             : "https://realestate.learnock.com/api/services";
