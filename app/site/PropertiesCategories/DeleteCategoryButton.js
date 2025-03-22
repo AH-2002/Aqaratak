@@ -1,5 +1,4 @@
 "use client";
-import { getUserToken } from "@/app/userRole/getUserToken";
 import { useRouter } from "next/navigation";
 
 export default function DeleteCategoryButton({ type, categoryId }) {
@@ -10,7 +9,7 @@ export default function DeleteCategoryButton({ type, categoryId }) {
     const handleDelete = async () => {
         if (!confirm("Are you sure you want to delete this category?")) return;
 
-        const token = await getUserToken();
+        const token = localStorage.getItem("userToken");
         const endpoint = type === "types" 
             ? `${api_URL}api/${type}/${categoryId}` 
             : `${api_URL}api/${type}/categories/${categoryId}`;
