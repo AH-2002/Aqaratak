@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { getUserToken } from "@/app/userRole/getUserToken";
 import { useRouter } from "next/navigation";
 
 export default function UpdateCategoryButton({ type, category }) {
@@ -15,7 +14,7 @@ export default function UpdateCategoryButton({ type, category }) {
     const handleUpdate = async (e) => {
         e.preventDefault();
 
-        const token = await getUserToken();
+        const token = localStorage.getItem("userToken");
         const endpoint = type === "types"
             ? `${api_URL}api/${type}/${category.id}`
             : `${api_URL}api/${type}/categories/${category.id}`;
