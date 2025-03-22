@@ -1,10 +1,9 @@
 import Link from "next/link";
 import ServiceCard from "../Cards/serviceCard";
-import { getUserToken } from "@/app/userRole/getUserToken";
 export default async function Service() {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token = await getUserToken();
+    const token = localStorage.getItem("userToken");
 
     let services = [];
     let error = null;
