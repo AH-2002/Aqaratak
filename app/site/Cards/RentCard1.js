@@ -8,9 +8,21 @@ import FavoriteButton from "../favoritePage/FavoriteButton";
 import DeletePropertyButton from "../RentPage/DeletePropertyButton";
 import UpdatePropertyButton from "../RentPage/UpdatePropertyButton"
 export default function RentCard({ property, refreshProperties }) {
-    const { profile } = useProfile();
+    const { profile, loading } = useProfile(); // Extract loading state as well
+    const [token, setToken] = useState(null);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
+
+    // Ensure that profile data is loaded before rendering
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
     const isTenant = profile?.data?.role === "tenant";
-    const token = localStorage.getItem("userToken");
     return (
 
         <div className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-200">
