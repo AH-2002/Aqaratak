@@ -4,13 +4,13 @@ import { useProfile } from "@/app/context/profileContext";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import FavoriteButton from "../favoritePage/FavoriteButton";
 import DeletePropertyButton from "../RentPage/DeletePropertyButton";
 import UpdatePropertyButton from "../RentPage/UpdatePropertyButton"
 export default function RentCard({ property, refreshProperties }) {
     const { profile, loading } = useProfile(); // Extract loading state as well
     const [token, setToken] = useState(null);
-
     useEffect(() => {
         if (typeof window !== "undefined") {
             setToken(localStorage.getItem("userToken"));
