@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getUserToken } from "@/app/userRole/getUserToken";
 import Image from "next/image";
 import { useProfile } from "@/app/context/profileContext";
 import Navbar from "../Navbar";
@@ -22,7 +21,7 @@ export default function FavoritesPage() {
     }, [userId]);
 
     const fetchFavorites = async (id) => {
-        const token = await getUserToken();
+        const token = localStorage.getItem("userToken");
         try {
             const response = await fetch(`https://realestate.learnock.com/api/favorites/${id}`, {
                 method: "GET",
