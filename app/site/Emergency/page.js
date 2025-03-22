@@ -6,7 +6,7 @@ import Navbar from "../Navbar";
 export default function EmergencyRequests() {
     const api_URL = "https://realestate.learnock.com/api/emergency-requests";
     const apiKey = 1234;
-    const token = typeof window !== "undefined" ? localStorage.getItem("userToken") : "";
+    const token = localStorage.getItem("userToken");
 
     const defaultFormData = {
         emergency_type: "",
