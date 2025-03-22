@@ -1,10 +1,9 @@
-"use client"
+"use client";
 import { revalidatePath } from "next/cache";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-
 import AddPropertyButton from "./AddPropertButton";
-import RentCard from "@/app/site/Cards/RentCard1";
+import RentCard from "@/app/site/Cards/RentCard";
 import { useEffect, useState } from "react";
 import { useProfile } from "@/app/context/profileContext";
 
@@ -15,13 +14,15 @@ export default function RentPage() {
     const { profile } = useProfile();
     const isTenant = profile?.data?.role === "tenant";
 
-    let [properties, setProperties] = useState([]);
-    let [error, setError] = useState(null);
+    const [properties, setProperties] = useState([]);
+    const [error, setError] = useState(null);
+
     useEffect(() => {
         if (typeof window !== "undefined") {
             setToken(localStorage.getItem("userToken"));
         }
     }, []);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -44,10 +45,9 @@ export default function RentPage() {
                 console.error("Error fetching properties:", err);
                 setError(err.message);
             }
-        }
+        };
         fetchData();
-    }, [])
-
+    }, [token]);
 
     // Function to refresh properties list
     const refreshProperties = async () => {
@@ -60,10 +60,9 @@ export default function RentPage() {
             <section className="py-12 px-6 max-w-6xl mx-auto">
                 <div className="flex justify-between items-center mb-6">
                     <h1 className="text-3xl font-bold">Explore Our Apartments for Rent</h1>
-                    {token && !isTenant?(
+                    {token && !isTenant ? (
                         <AddPropertyButton refreshProperties={refreshProperties} />
-                    ):null
-                    }
+                    ) : null}
                 </div>
 
                 {error ? (

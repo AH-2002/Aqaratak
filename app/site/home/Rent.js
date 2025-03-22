@@ -2,12 +2,12 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import RentCard from "@/app/site/Cards/RentCard1";
+import RentCard from "@/app/site/Cards/RentCard";
 
 export default function Rent() {
     const API_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    
+
     const [rentList, setRentList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
