@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
-import { getUserToken } from "@/app/userRole/getUserToken";
 import Navbar from "@/app/site/Navbar"; // Adjust based on actual path
 import Footer from "@/app/site/Footer"; // Adjust based on actual path
 
@@ -18,7 +17,7 @@ export default function ServiceDetails() {
             console.log("Fetching service details for ID:", id);
 
             const apiKey = 1234;
-            const token = await getUserToken();
+            const token = localStorage.getItem("userToken");
             const api_URL = `https://realestate.learnock.com/api/services/${id}`;
 
             try {
