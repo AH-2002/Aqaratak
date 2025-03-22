@@ -6,8 +6,12 @@ export default function UpdatePropertyButton({ property, refreshProperties }) {
     const [showForm, setShowForm] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const token = localStorage.getItem("userToken");
-
+    const [token, setToken] = useState(null);
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
     const [formData, setFormData] = useState({});
 
     useEffect(() => {

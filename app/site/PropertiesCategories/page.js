@@ -12,10 +12,17 @@ export default function PropertiesCategories() {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [token, setToken] = useState(null);
 
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token = typeof window !== "undefined" ? localStorage.getItem("userToken") : null;
+
+   
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
 
     useEffect(() => {
         if (!token) {
@@ -49,11 +56,34 @@ export default function PropertiesCategories() {
 
         fetchCategories();
     }, [token]);
-    const refreshCategories = () => {
-        fetchCategories(); // Fetch categories again to refresh the list
+
+    const refreshCategories = async () => {
+        if (!token) return;
+        try {
+            setLoading(true);
+            const response = await fetch(`${api_URL}api/properties/categories`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "apiKey": apiKey,
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+
+            if (!response.ok) throw new Error("Failed to fetch categories");
+
+            const parsedResponse = await response.json();
+            setCategories(parsedResponse?.data || []);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const isTenant = profile?.data?.role === "tenant";
+
 
     return (
         <div>

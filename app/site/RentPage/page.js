@@ -11,12 +11,17 @@ import { useProfile } from "@/app/context/profileContext";
 export default function RentPage() {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token = localStorage.getItem("userToken");
+    const [token, setToken] = useState(null);
     const { profile } = useProfile();
     const isTenant = profile?.data?.role === "tenant";
 
     let [properties, setProperties] = useState([]);
     let [error, setError] = useState(null);
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
     useEffect(() => {
         const fetchData = async () => {
             try {

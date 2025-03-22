@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CategoryForm({ type, onClose }) {
     const [nameEn, setNameEn] = useState("");
@@ -7,16 +7,27 @@ export default function CategoryForm({ type, onClose }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const [token, setToken] = useState(null);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!token) {
+            setError("User is not authenticated.");
+            return;
+        }
+
         setLoading(true);
         setError(null);
 
         try {
             const api_URL = "https://realestate.learnock.com/";
             const apiKey = 1234;
-            const token =localStorage.getItem("userToken");
-
             const endpoint = type === "types" ? `${api_URL}api/${type}` : `${api_URL}api/${type}/categories`;
 
             const response = await fetch(endpoint, {
@@ -25,7 +36,7 @@ export default function CategoryForm({ type, onClose }) {
                     "Content-Type": "application/json",
                     "Accept": "application/json",
                     "apiKey": apiKey,
-                    "Authorization": `Bearer ${token}`
+                    "Authorization": `Bearer ${token}`,
                 },
                 body: JSON.stringify({
                     name_en: nameEn,
@@ -47,8 +58,8 @@ export default function CategoryForm({ type, onClose }) {
         } finally {
             setLoading(false);
         }
+    
     };
-
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
             <div className="bg-white p-6 rounded shadow-lg w-96">

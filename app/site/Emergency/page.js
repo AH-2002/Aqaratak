@@ -6,26 +6,32 @@ import Navbar from "../Navbar";
 export default function EmergencyRequests() {
     const api_URL = "https://realestate.learnock.com/api/emergency-requests";
     const apiKey = 1234;
-    const token = localStorage.getItem("userToken");
-
-    const defaultFormData = {
+    
+    const [token, setToken] = useState(null);
+    const [requests, setRequests] = useState([]);
+    const [formData, setFormData] = useState({
         emergency_type: "",
         status: "pending",
         priority: "emergency",
         property_id: null,
         tenant_id: ""
-    };
-
-    const [requests, setRequests] = useState([]);
-    const [formData, setFormData] = useState(defaultFormData);
-    const [loading, setLoading] = useState(false);
+    });
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [showForm, setShowForm] = useState(false);
     const [editingRequest, setEditingRequest] = useState(null);
 
     useEffect(() => {
-        fetchRequests();
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
     }, []);
+
+    useEffect(() => {
+        if (token) {
+            fetchRequests();
+        }
+    }, [token]);
 
     const fetchRequests = async () => {
         try {
@@ -40,6 +46,8 @@ export default function EmergencyRequests() {
             setRequests(data.data);
         } catch (err) {
             setError(err.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -71,7 +79,13 @@ export default function EmergencyRequests() {
             fetchRequests();
             setShowForm(false);
             setEditingRequest(null);
-            setFormData(defaultFormData); // Reset form
+            setFormData({
+                emergency_type: "",
+                status: "pending",
+                priority: "emergency",
+                property_id: null,
+                tenant_id: ""
+            });
         } catch (err) {
             setError(err.message);
         } finally {
@@ -86,7 +100,13 @@ export default function EmergencyRequests() {
     };
 
     const handleNewRequest = () => {
-        setFormData(defaultFormData); // Reset form before opening
+        setFormData({
+            emergency_type: "",
+            status: "pending",
+            priority: "emergency",
+            property_id: null,
+            tenant_id: ""
+        });
         setEditingRequest(null);
         setShowForm(true);
     };
@@ -108,6 +128,8 @@ export default function EmergencyRequests() {
         }
     };
 
+    if (!token) return <p>Loading...</p>;
+
     return (
         <>
             <Navbar />
@@ -117,14 +139,12 @@ export default function EmergencyRequests() {
 
                 {showForm && (
                     <div className="mt-4 p-4 border rounded bg-white shadow-md relative">
-                        {/* ❌ Close Button */}
                         <button
                             onClick={() => setShowForm(false)}
                             className="absolute top-2 right-2 text-xl font-bold text-red-600"
                         >
                             ✖
                         </button>
-
 
                         <form onSubmit={handleSubmit}>
                             <label className="block">Emergency Type:</label>
@@ -156,22 +176,26 @@ export default function EmergencyRequests() {
                     </div>
                 )}
 
-                <ul className="mt-6">
-                    {requests.map((req) => (
-                        <li key={req.id} className="p-4 border rounded shadow-md mb-2">
-                            <p><strong>Type:</strong> {req.emergency_type}</p>
-                            <p><strong>Status:</strong> {req.status}</p>
-                            <p><strong>Priority:</strong> {req.priority}</p>
-                            <p><strong>Property ID:</strong> {req.property_id}</p>
-                            <p><strong>Tenant ID:</strong> {req.tenant_id}</p>
-                            <p><strong>Created At:</strong> {new Date(req.created_at).toLocaleString()}</p>
-                            <div className="mt-2 flex gap-2">
-                                <button onClick={() => handleEdit(req)} className="bg-yellow-500 text-white py-1 px-3 rounded">Edit</button>
-                                <button onClick={() => handleDelete(req.id)} className="bg-red-600 text-white py-1 px-3 rounded">Delete</button>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                {loading ? (
+                    <p>Loading requests...</p>
+                ) : (
+                    <ul className="mt-6">
+                        {requests.map((req) => (
+                            <li key={req.id} className="p-4 border rounded shadow-md mb-2">
+                                <p><strong>Type:</strong> {req.emergency_type}</p>
+                                <p><strong>Status:</strong> {req.status}</p>
+                                <p><strong>Priority:</strong> {req.priority}</p>
+                                <p><strong>Property ID:</strong> {req.property_id}</p>
+                                <p><strong>Tenant ID:</strong> {req.tenant_id}</p>
+                                <p><strong>Created At:</strong> {new Date(req.created_at).toLocaleString()}</p>
+                                <div className="mt-2 flex gap-2">
+                                    <button onClick={() => handleEdit(req)} className="bg-yellow-500 text-white py-1 px-3 rounded">Edit</button>
+                                    <button onClick={() => handleDelete(req.id)} className="bg-red-600 text-white py-1 px-3 rounded">Delete</button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
             <Footer />
         </>

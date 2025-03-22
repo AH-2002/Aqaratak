@@ -6,8 +6,14 @@ import ScrollToUp from "./ScrollToUp";
 import Service from "./Service";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import { useEffect, useState } from "react";
 export default function Home() {
-    const token = localStorage.getItem("userToken");
+    const [token, setToken] = useState(null);
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
     return (
         <>
             <Navbar />

@@ -5,8 +5,12 @@ import { useState } from "react";
 export default function DeletePropertyButton({ propertyId, refreshProperties }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const token = localStorage.getItem("userToken");
-
+    const [token, setToken] = useState(null);
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
     const handleDelete = async () => {
         if (!window.confirm("Are you sure you want to delete this property?")) return;
 

@@ -1,14 +1,19 @@
 "use client";
-import { useRouter } from "next/navigation";
+
+import { useEffect, useState } from "react";
 
 export default function DeleteCategoryButton({ type, categoryId }) {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-
+    const [token, setToken] = useState(null)
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
     const handleDelete = async () => {
         if (!confirm("Are you sure you want to delete this category?")) return;
 
-        const token = localStorage.getItem("userToken");
         const endpoint = type === "types"
             ? `${api_URL}api/${type}/${categoryId}`
             : `${api_URL}api/${type}/categories/${categoryId}`;

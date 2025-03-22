@@ -12,11 +12,15 @@ export default function PropertyTypes() {
     const [Prop_Types, setProp_Types] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [token, setToken] = useState(null);
 
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token = localStorage.getItem("userToken");
-
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
     useEffect(() => {
         const fetchPropertyTypes = async () => {
             if (!token) {

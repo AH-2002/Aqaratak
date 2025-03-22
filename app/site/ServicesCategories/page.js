@@ -14,8 +14,14 @@ export default function ServicesCategories() {
 
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token = typeof window !== "undefined" ? localStorage.getItem("userToken") : null;
+    const [token, setToken] = useState(null);
 
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
+    
     useEffect(() => {
         const fetchCategories = async () => {
             if (!token) {
@@ -55,7 +61,7 @@ export default function ServicesCategories() {
                 <h2 className="text-center text-xl font-bold mb-4">Services Categories</h2>
                 <div className="flex justify-between items-center mb-4">
                     <span className="text-lg font-semibold">Services Category List</span>
-                    {!isTenant && <AddCategoryButton type="properties" />}
+                    {!isTenant && <AddCategoryButton type="services" />}
                 </div>
                 {loading ? (
                     <p className="text-center text-gray-500">Loading categories...</p>

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useRef } from "react";
 
 const ProfileContext = createContext();
 
@@ -8,13 +8,20 @@ export const ProfileProvider = ({ children }) => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const [token, setToken] = useState(null);
+    const hasFetched = useRef(false);
+    
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token = typeof window !== "undefined" ? localStorage.getItem("userToken") : null;
 
     useEffect(() => {
-        if (!token) {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!token || hasFetched.current) {
             setLoading(false);
             return;
         }
@@ -36,6 +43,7 @@ export const ProfileProvider = ({ children }) => {
 
                 const data = await response.json();
                 setProfile(data);
+                hasFetched.current = true; // Prevent unnecessary re-fetching
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -47,7 +55,7 @@ export const ProfileProvider = ({ children }) => {
     }, [token]);
 
     return (
-        <ProfileContext.Provider value={{ profile, loading, error }}>
+        <ProfileContext.Provider value={{ profile, setProfile, loading, error }}>
             {children}
         </ProfileContext.Provider>
     );

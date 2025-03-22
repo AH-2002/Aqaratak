@@ -9,15 +9,25 @@ export default function ServiceDetails() {
     const { id } = useParams(); // ✅ Get dynamic ID from URL
     const [service, setService] = useState(null);
     const [error, setError] = useState(null);
+    const [token, setToken] = useState(null);
     const router = useRouter();
+
+    // ✅ Fetch token from localStorage before making API request
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const storedToken = localStorage.getItem("userToken");
+            if (storedToken) {
+                setToken(storedToken);
+            }
+        }
+    }, []);
 
     useEffect(() => {
         async function fetchService() {
-            if (!id) return;
-            console.log("Fetching service details for ID:", id);
+            if (!id || !token) return; // ✅ Ensures token is available
 
+            console.log("Fetching service details for ID:", id);
             const apiKey = 1234;
-            const token = localStorage.getItem("userToken");
             const api_URL = `https://realestate.learnock.com/api/services/${id}`;
 
             try {
@@ -34,14 +44,14 @@ export default function ServiceDetails() {
 
                 const data = await response.json();
                 console.log("API Response:", data);
-                setService(data.data); // ✅ Store the service data correctly
+                setService(data.data); // ✅ Store service data correctly
             } catch (err) {
                 setError(err.message);
             }
         }
 
         fetchService();
-    }, [id]);
+    }, [id, token]); // ✅ Runs only when both id and token are available
 
     if (error) return <p className="text-red-500 text-center">{error}</p>;
     if (!service) return <p className="text-center text-gray-500 text-lg">Loading...</p>;

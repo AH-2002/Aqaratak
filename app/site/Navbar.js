@@ -11,7 +11,13 @@ export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [userMenuOpen, setUserMenuOpen] = useState(false);
     const userMenuRef = useRef(null);
-    const token = localStorage.getItem("userToken");
+    const [token, setToken] = useState(null);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
     const router = useRouter();
     console.log("profile", profile)
     const handleLogout = () => {

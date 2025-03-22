@@ -1,16 +1,25 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ServiceCard from "../Cards/serviceCard";
+
 export default function Service() {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token = localStorage.getItem("userToken");
 
     const [services, setServices] = useState([]);
+    const [token, setToken] = useState(null);
     const [error, setError] = useState(null);
-    
+
     useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!token) return;
+
         const fetchData = async () => {
             try {
                 const response = await fetch(`${api_URL}api/services`, {
@@ -27,15 +36,15 @@ export default function Service() {
                 if (!response.ok) throw new Error("Failed to fetch services");
 
                 const parsedResponse = await response.json();
-                setServices(parsedResponse?.data.slice(0, 3) || []);
+                setServices(parsedResponse?.data?.slice(0, 3) || []);
             } catch (err) {
                 console.error("Error fetching services:", err);
                 setError(err.message);
             }
         };
-        fetchData();
-    },[])
 
+        fetchData();
+    }, [token]); // Re-run when `token` is set
 
     return (
         <section className="py-12">

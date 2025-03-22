@@ -4,7 +4,7 @@ import { useProfile } from "@/app/context/profileContext";
 import { useState } from "react";
 
 export default function ServiceForm({ onSuccess, existingService = null }) {
-    const token = localStorage.getItem("userToken");
+    const [token, setToken] = useState(null);
     const {profile} = useProfile();
     const isTenant = profile?.data?.role === "tenant";
     const apiKey = 1234;
@@ -25,7 +25,12 @@ export default function ServiceForm({ onSuccess, existingService = null }) {
         user_id: existingService?.user_id || "",
         category_id: existingService?.category_id || "",
     });
-
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const storedToken = localStorage.getItem("userToken");
+            if (storedToken) setToken(storedToken);
+        }
+    }, []);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
