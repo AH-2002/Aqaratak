@@ -1,4 +1,4 @@
-import { getUserToken } from "@/app/userRole/getUserToken";
+"use client"
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Image from "next/image";
 import Footer from "../../Footer";
@@ -8,7 +8,7 @@ export default async function PropertyDetails({ params }) {
     const { id } = params;
     const API_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token = await getUserToken();
+    const token = localStorage.getItem("userToken");
 
     try {
         const response = await fetch(`${API_URL}api/properties/${id}`, {
