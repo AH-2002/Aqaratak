@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import Navbar from "../Navbar";
 import { useProfile } from "@/app/context/profileContext";
 
-export default async function AdminProfile() {
+export default function AdminProfile() {
     const { profile } = useProfile();
 
     console.log("Admin Profile:", profile);
