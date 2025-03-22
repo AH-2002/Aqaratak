@@ -1,14 +1,14 @@
+"use client"
 import ServiceCard from "../Cards/serviceCard";
 import ServiceForm from "./ServiceForm";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { revalidatePath } from "next/cache";
-import { getUserToken } from "@/app/userRole/getUserToken";
 
 export default async function ServicePage() {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
-    const token = await getUserToken();
+    const token = localStorage.getItem("userToken");
 
     let services = [];
     let error = null;
