@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getUserToken } from "@/app/userRole/getUserToken";
 
 export default function PostsPage() {
     const [posts, setPosts] = useState([]);
@@ -20,7 +19,7 @@ export default function PostsPage() {
 
     const fetchPosts = async () => {
         try {
-            const token = await getUserToken();
+            const token = localStorage.getItem("userToken");
             const response = await fetch(api_URL, {
                 headers: {
                     "Content-Type": "application/json",
