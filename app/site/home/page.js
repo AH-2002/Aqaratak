@@ -8,6 +8,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { useEffect, useState } from "react";
 export default function Home() {
+    console.log("homeeeeeeeeeeee")
     const [token, setToken] = useState(null);
     useEffect(() => {
         if (typeof window !== "undefined") {
