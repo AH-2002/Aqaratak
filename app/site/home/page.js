@@ -11,9 +11,13 @@ export default function Home() {
     const [token, setToken] = useState(null);
     useEffect(() => {
         if (typeof window !== "undefined") {
-            setToken(localStorage.getItem("userToken"));
+            const userToken = localStorage.getItem("userToken");
+            if (userToken) {
+                setToken(userToken);
+            }
         }
     }, []);
+    
     return (
         <>
             <Navbar />
@@ -50,49 +54,49 @@ export default function Home() {
                                     />
                                 </div>
                                 <div className='input'>
-                                    <label style={{ fontWeight: 'bolder' }} htmlFor="first-input">
+                                    <label style={{ fontWeight: 'bolder' }} htmlFor="second-input">
                                         Type
                                     </label>
                                     <input
                                         type="email"
                                         className="peer block min-h-[auto] bg-transparent px-1 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                        id="first-input"
+                                        id="second-input"
                                         placeholder='What are you look for?'
                                         style={{ border: '1px solid gray', borderRadius: '10px' }}
                                     />
                                 </div>
                                 <div className='input'>
-                                    <label style={{ fontWeight: 'bolder' }} htmlFor="first-input">
+                                    <label style={{ fontWeight: 'bolder' }} htmlFor="third-input">
                                         Price
                                     </label>
                                     <input
                                         type="email"
                                         className="peer block min-h-[auto] bg-transparent px-1 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                        id="first-input"
+                                        id="third-input"
                                         placeholder='What are you look for?'
                                         style={{ border: '1px solid gray', borderRadius: '10px' }}
                                     />
                                 </div>
                                 <div className='input'>
-                                    <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlFor="first-input">
+                                    <label style={{ fontWeight: 'bolder', fontSize: 'larger' }} htmlFor="fourth-input">
                                         Location
                                     </label>
                                     <input
                                         type="email"
                                         className="peer block min-h-[auto] bg-transparent px-1 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                        id="first-input"
+                                        id="fourth-input"
                                         placeholder='What are you look for?'
                                         style={{ border: '1px solid gray', borderRadius: '10px' }}
                                     />
                                 </div>
                                 <div className='input'>
-                                    <label style={{ fontWeight: 'bolder' }} htmlFor="first-input">
+                                    <label style={{ fontWeight: 'bolder' }} htmlFor="fifth-input">
                                         Location
                                     </label>
                                     <input
                                         type="email"
                                         className="peer block min-h-[auto] bg-transparent px-1 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary"
-                                        id="first-input"
+                                        id="fifth-input"
                                         placeholder='What are you look for?'
                                         style={{ border: '1px solid gray', borderRadius: '10px' }}
                                     />
@@ -108,6 +112,8 @@ export default function Home() {
 
                 </main>
                 <Brands />
+                <Rent />
+                {token ? <Service /> : null}
                 <ScrollToUp />
             </section>
             <Footer />
