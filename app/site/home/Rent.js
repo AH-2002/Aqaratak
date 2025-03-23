@@ -3,6 +3,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import RentCard from "@/app/site/Cards/RentCard";
+import ServiceCard from "../Cards/serviceCard";
 
 export default function Rent() {
     const API_URL = "https://realestate.learnock.com/";
