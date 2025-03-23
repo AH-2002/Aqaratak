@@ -52,7 +52,8 @@ export default function Rent() {
             ) : (
                 <div className="purchase grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {rentList.length > 0 ? (
-                        rentList.map((item) => <RentCard key={item.id} property={item} />)
+                        rentList.map((item) => <ServiceCard key={item.id} service={item} />
+                        )
                     ) : (
                         <p>No properties available.</p>
                     )}
