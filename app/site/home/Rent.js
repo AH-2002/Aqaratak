@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import RentCard from "../Cards/RentCard";
+import RentCard from "../Cards/RentCard1";
+
 export default function Rent() {
     const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
@@ -17,24 +18,32 @@ export default function Rent() {
     }, []);
 
     useEffect(() => {
-        if (!token) return;
-
         const fetchData = async () => {
             try {
+                let headers = {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "apiKey": apiKey,
+                };
+
+                // Add Authorization header only if token exists
+                if (token) {
+                    headers["Authorization"] = `Bearer ${token}`;
+                }
+
                 const response = await fetch(`${api_URL}api/properties`, {
                     method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json",
-                        "apiKey": apiKey,
-                        "Authorization": `Bearer ${token}`,
-                    },
+                    headers: headers,
                     cache: "no-store",
                 });
 
-                if (!response.ok) throw new Error("Failed to fetch properties");
-
                 const parsedResponse = await response.json();
+                console.log("API Response:", parsedResponse);
+
+                if (!response.ok) {
+                    throw new Error(parsedResponse.message || "Failed to fetch properties");
+                }
+
                 setProperties(parsedResponse?.data?.slice(0, 3) || []);
             } catch (err) {
                 console.error("Error fetching Properties:", err);
@@ -43,7 +52,7 @@ export default function Rent() {
         };
 
         fetchData();
-    }, [token]); // Re-run when `token` is set
+    }, [token]); // Fetch data regardless of token
 
     return (
         <section className="py-12">
@@ -52,7 +61,7 @@ export default function Rent() {
             {error ? (
                 <p className="text-red-500 text-center">{error}</p>
             ) : properties.length > 0 ? (
-                <div className="purchase grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {properties.map((item) => (
                         <RentCard key={item.id} property={item} />
                     ))}
