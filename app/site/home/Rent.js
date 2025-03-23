@@ -1,64 +1,64 @@
 "use client";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import RentCard from "@/app/site/Cards/RentCard";
-import ServiceCard from "../Cards/serviceCard";
-
+import RentCard from "../Cards/RentCard";
 export default function Rent() {
-    const API_URL = "https://realestate.learnock.com/";
+    const api_URL = "https://realestate.learnock.com/";
     const apiKey = 1234;
 
-    const [rentList, setRentList] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [properties, setProperties] = useState([]);
+    const [token, setToken] = useState(null);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchProperties = async () => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("userToken"));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!token) return;
+
+        const fetchData = async () => {
             try {
-                const response = await fetch(`${API_URL}api/properties`, {
+                const response = await fetch(`${api_URL}api/properties`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
                         "Accept": "application/json",
-                        "apiKey": apiKey
-                    }
+                        "apiKey": apiKey,
+                        "Authorization": `Bearer ${token}`,
+                    },
+                    cache: "no-store",
                 });
 
                 if (!response.ok) throw new Error("Failed to fetch properties");
 
-                const jsonResponse = await response.json();
-                console.log("json rent data", jsonResponse);
-                setRentList(jsonResponse.data.slice(0, 3)); // Store only the first 3 properties
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
+                const parsedResponse = await response.json();
+                setProperties(parsedResponse?.data?.slice(0, 3) || []);
+            } catch (err) {
+                console.error("Error fetching Properties:", err);
+                setError(err.message);
             }
         };
 
-        fetchProperties();
-    }, []);
+        fetchData();
+    }, [token]); // Re-run when `token` is set
 
     return (
-        <section style={{ padding: "50px 0" }}>
-            <h1 style={{ fontWeight: "bolder", fontSize: "larger", marginBottom: "25px" }}>
-                Explore our Apartments for Rent
-            </h1>
+        <section className="py-12">
+            <h1 className="text-3xl font-bold mb-6">Explore Our Apartments for Rent</h1>
 
-            {loading ? (
-                <p>Loading properties...</p>
-            ) : error ? (
-                <p className="text-red-500">Error fetching properties: {error}</p>
-            ) : (
+            {error ? (
+                <p className="text-red-500 text-center">{error}</p>
+            ) : properties.length > 0 ? (
                 <div className="purchase grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {rentList.length > 0 ? (
-                        rentList.map((item) => <ServiceCard key={item.id} service={item} />
-                        )
-                    ) : (
-                        <p>No properties available.</p>
-                    )}
+                    {properties.map((item) => (
+                        <RentCard key={item.id} property={item} />
+                    ))}
                 </div>
+            ) : (
+                <p className="text-center text-gray-500">No Properties available.</p>
             )}
 
             <div className="flex justify-center mt-6">
