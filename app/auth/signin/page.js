@@ -4,7 +4,7 @@ import SigninValidation from "./SigninValidation"
 export default function signin() {
 
     return (
-        <section style={{ width: '95%', margin: 'auto', padding: '10px 0' }}>
+        <section style={{ width: '95%', margin: 'auto', padding: '10px 0'}}>
             <nav>
                 <Image
                     src='/logo.png'
@@ -30,6 +30,9 @@ export default function signin() {
                     <div style={{ height: '1px', width: '25%', background: 'gray' }}></div>
                     <span style={{ margin: '0 10px', width: '4%', textAlign: 'center', color: 'gray' }}>or</span>
                     <div style={{ height: '1px', width: '25%', background: 'gray' }}></div>
+                </div>
+                <div className='text-gray-500'>
+                    try email abc123@gmail.com and password 123456789
                 </div>
             </div >
             <SigninValidation />
