@@ -108,7 +108,6 @@ export default function Home() {
 
                 </main>
                 <Brands />
-                <Rent />
                 {token ? <Service /> : null}
                 <ScrollToUp />
             </section>
